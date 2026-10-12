@@ -5,208 +5,156 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Passtelacare - Patient Consent Form</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #eef2f7; margin: 0; padding: 15px; color: #222; }
-    .doc-page { max-width: 850px; margin: auto; background: #fff; padding: 35px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-top: 6px solid #0056b3; }
+    @page { size: A4; margin: 0; }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #eaedf1; margin: 0; padding: 20px 10px; color: #000; }
     
-    /* Header & Branding */
-    .header { text-align: center; border-bottom: 2px solid #0056b3; padding-bottom: 12px; margin-bottom: 20px; }
-    .header h1 { color: #0056b3; font-size: 24px; margin: 0; text-transform: uppercase; font-weight: bold; }
-    .header h3 { color: #28a745; font-size: 15px; margin: 6px 0 0 0; }
-    .header p { font-size: 11px; color: #444; margin: 3px 0; }
+    .a4-page {
+      max-width: 794px;
+      margin: auto;
+      background: #fff;
+      padding: 0;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+      position: relative;
+      border: 1px solid #ccc;
+    }
     
-    .form-title { text-align: center; font-size: 18px; font-weight: bold; text-decoration: underline; margin: 20px 0; color: #111; text-transform: uppercase; }
-    
-    /* Section & Tables */
-    .section-title { font-weight: bold; background: #f0f4f8; padding: 8px 12px; margin-top: 25px; font-size: 14px; border-left: 5px solid #0056b3; color: #0056b3; text-transform: uppercase; }
-    
-    .info-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
-    .info-table td { padding: 6px 8px; vertical-align: top; }
-    
-    .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
-    .data-table th, .data-table td { border: 1px solid #ccc; padding: 7px 10px; text-align: left; }
-    .data-table th { background: #eef2f7; color: #0056b3; font-size: 12px; text-transform: uppercase; }
-    
-    .scope-table td { line-height: 1.5; }
-    
-    /* Terms */
-    .terms-list { font-size: 11px; color: #333; line-height: 1.6; padding-left: 18px; margin-top: 10px; }
-    .terms-list li { margin-bottom: 6px; }
-    
-    .declaration { font-size: 12px; background: #fffde7; border: 1px solid #ffe082; padding: 12px; margin-top: 15px; border-radius: 4px; line-height: 1.5; }
+    .page-content { padding: 30px 45px 120px 45px; }
 
-    /* Signature Box Area */
-    .sig-area { margin-top: 30px; background: #f9fbfd; padding: 20px; border: 2px dashed #0056b3; border-radius: 8px; }
-    canvas { display: block; width: 100%; height: 170px; background: #fff; border: 1px solid #aaa; border-radius: 4px; touch-action: none; cursor: crosshair; }
+    /* Top Logo & Header */
+    .brand-logo { text-align: center; margin-bottom: 5px; }
+    .brand-logo img { height: 50px; }
     
-    .btn-group { display: flex; gap: 12px; margin-top: 15px; }
-    button { flex: 1; padding: 14px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; }
-    .btn-clear { background: #dc3545; color: #fff; }
-    .btn-submit { background: #28a745; color: #fff; }
-    button:disabled { background: #aaa; cursor: not-allowed; }
+    .company-header { text-align: center; font-size: 11px; line-height: 1.4; color: #222; }
+    .company-header h2 { font-size: 16px; margin: 2px 0; color: #000; font-weight: bold; letter-spacing: 0.5px; }
+    .company-header h3 { font-size: 14px; margin: 10px 0 2px 0; color: #000; font-weight: bold; }
+    .company-header a { color: #0056b3; text-decoration: underline; }
+
+    .doc-title { text-align: center; font-size: 16px; font-weight: bold; text-decoration: underline; margin: 25px 0 15px 0; letter-spacing: 0.5px; }
+
+    .date-text { font-size: 12px; margin-bottom: 12px; }
+
+    /* Details List */
+    .details-title { font-weight: bold; font-size: 12px; margin-bottom: 6px; }
+    .details-list { font-size: 12px; line-height: 1.8; margin: 0; padding-left: 20px; }
+    .details-list li { margin-bottom: 2px; }
+
+    /* Section Headers & Tables */
+    .section-head { font-weight: bold; font-size: 12px; margin-top: 20px; margin-bottom: 8px; text-transform: uppercase; }
     
-    #loadingDiv { text-align: center; padding: 60px; font-size: 18px; font-weight: bold; color: #0056b3; }
-    #message { margin-top: 15px; text-align: center; font-weight: bold; font-size: 14px; }
+    .data-table { width: 100%; border-collapse: collapse; margin-top: 5px; font-size: 11px; }
+    .data-table th, .data-table td { border: 1px solid #777; padding: 6px 8px; text-align: left; }
+    .data-table th { background: #f0f0f0; font-weight: bold; }
+
+    .terms-text { font-size: 10px; line-height: 1.5; color: #222; padding-left: 15px; margin-top: 8px; }
+    .terms-text li { margin-bottom: 4px; }
+
+    /* Footer Design Matching Exact Doc Header/Footer */
+    .footer-bar {
+      background: #0072bc;
+      color: #fff;
+      padding: 8px 20px;
+      font-size: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 30px;
+    }
+    .footer-green {
+      background: #689f38;
+      padding: 8px 15px;
+      color: #fff;
+      font-size: 9.5px;
+      text-align: right;
+      line-height: 1.2;
+    }
+
+    /* Signature Area */
+    .sig-box {
+      margin-top: 20px;
+      border: 1px dashed #0072bc;
+      padding: 15px;
+      background: #fafafa;
+      border-radius: 4px;
+    }
+    canvas { display: block; width: 100%; height: 150px; background: #fff; border: 1px solid #ccc; touch-action: none; cursor: crosshair; }
+    
+    .btn-group { display: flex; gap: 10px; margin-top: 10px; }
+    button { flex: 1; padding: 12px; border: none; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 3px; }
+    .btn-clear { background: #d9534f; color: #fff; }
+    .btn-submit { background: #5cb85c; color: #fff; }
+
+    #loadingDiv { text-align: center; padding: 100px 20px; font-size: 16px; font-weight: bold; color: #0072bc; }
+    #message { text-align: center; font-weight: bold; margin-top: 10px; font-size: 13px; }
   </style>
 </head>
 <body>
 
-<div class="doc-page">
+<div class="a4-page">
   
-  <div id="loadingDiv">Consent Form Load Thai Rahyu Chhe, Rah Juo...</div>
+  <div id="loadingDiv">Consent Form Loading, Please Wait...</div>
 
   <div id="formContent" style="display:none;">
     
-    <!-- Letterhead Header -->
-    <div class="header">
-      <h1>PASSTELA CARE PVT LTD</h1>
-      <p>Web: https://passtelacare.com | Email: info@passtelacare.com</p>
-      <p>Corporate Office: 402- Milestone Drive In Rd, near Doordarshan Metro Station, Thaltej, Ahmedabad, Gujarat 380059</p>
-      <p>Contact: +91 90999 93666 / 7 / 8 / 9 | CIN: U86100GJ2026PTC176837</p>
-      <h3>PASSTELA SURGICAL HUB</h3>
-      <p>205, ST XAVIER SCHOOL ROAD, MEMNAGAR, AHMEDABAD, GUJARAT | MOB: 9099993667</p>
+    <div class="page-content">
+      
+      <!-- Top Logo Bar -->
+      <div class="brand-logo">
+        <h1 style="color:#689f38; font-size:26px; margin:0; font-family:sans-serif;">PASS<span style="color:#0072bc;">+</span>ELA CARE</h1>
+        <div style="font-size:9px; color:#689f38; font-weight:bold; letter-spacing:3px;">BETTER FOR YOU</div>
+      </div>
+
+      <!-- Header Information -->
+      <div class="company-header">
+        <h2>PASSTELA CARE PVT LTD</h2>
+        <div>Web: <a href="https://passtelacare.com">https://passtelacare.com</a> | Email: info@passtelacare.com</div>
+        <div>Corporate Office: 402- Milestone Drive In Rd, near Doordarshan Metro Station, opposite Reliance Smart, Nilmani Society, Thaltej, Ahmedabad, Gujarat 380059</div>
+        <div>Contact: +91 90999 93666 / 7 / 8 / 9</div>
+        <div>CIN: U86100GJ2026PTC176837, PAN: AAQCP9662G</div>
+        <br>
+        <div style="font-weight:bold;">&</div>
+        <h3>PASSTELA SURGICAL HUB</h3>
+        <div>Email: passtelasurgicalhub@gmail.com</div>
+        <div>205, ST XAVIER SCHOOL ROAD, GRAM PANCHAYAT OFFICE, MEMNAGAR AHMEDABAD, GUJARAT.</div>
+        <div>MOB: 9099993667</div>
+        <div>DL NO: AD2-GJ-20B-252409</div>
+        <div>GST No: 24CYKPK3744B1ZN, PAN No: CYKPK37448</div>
+      </div>
+
+      <!-- Document Title -->
+      <div class="doc-title">CONSENT CUM QUOTATION FOR SERVICES</div>
+
+      <div class="date-text"><b>Date:</b> <span id="v_date">01/Jan/1970</span></div>
+
+      <!-- Client & Patient Details -->
+      <div class="details-title">Client & Patient Details</div>
+      <ul class="details-list">
+        <li><b>Client / Relative Name:</b> <span id="v_clientName">-</span></li>
+        <li><b>Patient Name:</b> <span id="v_patientName">-</span> (Age: <span id="v_age">-</span> Yrs | Gender: <span id="v_gender">-</span>)</li>
+        <li><b>Contact Number:</b> <span id="v_phone">-</span>, <b>E-Mail:</b> <span id="v_email">-</span></li>
+        <li><b>Patient Address:</b> <span id="v_address">-</span></li>
+      </ul>
+
+      <!-- Signature Area -->
+      <div class="sig-box">
+        <div style="font-weight:bold; color:#0072bc; margin-bottom:8px; font-size:13px;">સહી કરો (Client / Relative Signature):</div>
+        <canvas id="sigCanvas"></canvas>
+        <div class="btn-group">
+          <button type="button" class="btn-clear" onclick="clearCanvas()">ફરી સહી કરો (Clear)</button>
+          <button type="button" id="submitBtn" class="btn-submit" onclick="submitForm()">સબમિટ કરો (Submit Consent)</button>
+        </div>
+      </div>
+
     </div>
 
-    <div class="form-title">CONSENT CUM QUOTATION FOR SERVICES</div>
-
-    <!-- Client & Patient Details -->
-    <div class="section-title">CLIENT & PATIENT DETAILS</div>
-    <table class="info-table">
-      <tr>
-        <td width="50%"><b>Inquiry No:</b> <span id="v_inquiryNo">-</span></td>
-        <td width="50%"><b>Date:</b> <span id="v_date">-</span></td>
-      </tr>
-      <tr>
-        <td><b>Client / Relative Name:</b> <span id="v_clientName">-</span></td>
-        <td><b>Relation:</b> <span id="v_relation">-</span></td>
-      </tr>
-      <tr>
-        <td><b>Patient Name:</b> <span id="v_patientName">-</span></td>
-        <td><b>Age / Gender:</b> <span id="v_ageGender">-</span></td>
-      </tr>
-      <tr>
-        <td><b>Contact Number:</b> <span id="v_phone">-</span></td>
-        <td><b>Email:</b> <span id="v_email">-</span></td>
-      </tr>
-      <tr>
-        <td colspan="2"><b>Patient Address:</b> <span id="v_address">-</span></td>
-      </tr>
-    </table>
-
-    <!-- PART A: SERVICE CHARGES -->
-    <div class="section-title">PART A: SERVICES CHARGES & SHIFTS (Without GST)</div>
-    <table class="data-table">
-      <thead>
-        <tr>
-          <th>Service Name</th>
-          <th>24 Hours</th>
-          <th>Day Shift</th>
-          <th>Night Shift</th>
-          <th>Part Time</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><b>Nursing Care</b></td>
-          <td id="v_n24">₹0</td>
-          <td id="v_nD">₹0</td>
-          <td id="v_nN">₹0</td>
-          <td id="v_nPt">₹0</td>
-        </tr>
-        <tr>
-          <td><b>Caretaker (Personal Care)</b></td>
-          <td id="v_ct24">₹0</td>
-          <td id="v_ctD">₹0</td>
-          <td id="v_ctN">₹0</td>
-          <td id="v_ctPt">₹0</td>
-        </tr>
-        <tr>
-          <td><b>Baby Caretaker</b></td>
-          <td id="v_b24">₹0</td>
-          <td id="v_bD">₹0</td>
-          <td id="v_bN">₹0</td>
-          <td id="v_bPt">₹0</td>
-        </tr>
-        <tr>
-          <td><b>Physiotherapy</b></td>
-          <td colspan="4" id="v_physio">₹0</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- PART B: DETAILED SCOPE OF WORK -->
-    <div class="section-title">PART B: DETAILED SCOPE OF WORK (Service Descriptions)</div>
-    <table class="data-table scope-table">
-      <thead>
-        <tr>
-          <th width="30%">Service Category</th>
-          <th width="70%">Detailed Scope of Work & Description</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><b>Nursing Care</b></td>
-          <td id="v_nursingScope">As per prescribed clinical nursing procedures and doctor instructions.</td>
-        </tr>
-        <tr>
-          <td><b>Caretaker (Personal Care)</b></td>
-          <td>Bath - Sponging, Bed Sheet Change, Bedsore Dressing, Change Position, Cloth Change, Cloth Wash, Diaper Changing, Empty Colostomy/Urine Bag, Gentle Massage, Give Bed Pan, Give Medicine, Ryles Tube Feeding, Stool Cleaning, Support in Walking, Wheelchair Transfer.</td>
-        </tr>
-        <tr>
-          <td><b>Baby Caretaker</b></td>
-          <td>Baby Bath, Baby Massage, Baby-Mummy Massage, Diaper Change, Wash Baby Clothes.</td>
-        </tr>
-        <tr>
-          <td><b>Physiotherapy</b></td>
-          <td>As prescribed by the Doctors.</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- PART C: RENTAL MEDICAL EQUIPMENT -->
-    <div class="section-title">PART C: RENTAL MEDICAL EQUIPMENT (With GST)</div>
-    <table class="data-table" id="equipmentTable">
-      <thead>
-        <tr>
-          <th>Medical Equipment</th>
-          <th>Frequency</th>
-          <th>Total Cost</th>
-        </tr>
-      </thead>
-      <tbody id="eqpTbody">
-        <tr><td colspan="3" style="text-align:center;">Loading equipment details...</td></tr>
-      </tbody>
-    </table>
-
-    <!-- DEPOSIT -->
-    <div style="margin-top: 15px; font-size: 13px; background: #eef2f7; padding: 10px; border-radius: 4px;">
-      <b>Applicable Deposit Amount:</b> ₹<span id="v_deposit">0</span>/-<br>
-      <b>In Words:</b> <span id="v_depositWords">ZERO</span>
-    </div>
-
-    <!-- TERMS AND CONDITIONS -->
-    <div class="section-title">TERMS AND CONDITIONS</div>
-    <ol class="terms-list">
-      <li><b>Billing Structure:</b> Services rendered by Passtela Care Pvt Ltd will be billed without GST, whereas medical equipment provided by Passtela Surgical Hub will be billed with GST.</li>
-      <li><b>Payment Terms:</b> A 15-day advance payment is required to start the service. Regular payments must be made within 3 days of receiving the invoice; otherwise, services will be terminated without notice. An extra 1% shall be levied for late payment.</li>
-      <li><b>Payment Modes:</b> UPI / NEFT / Digital modes, Cash, or Cheques accepted. Rs. 150 per visit will be charged for at-home cash/cheque pickup.</li>
-      <li><b>Staff Direct Hiring Restriction:</b> Direct hiring or contacting Passtela staff directly will attract a penalty fee of Rs. 50,000/-.</li>
-      <li><b>Scope of Work:</b> Staff will strictly perform patient-related care. Household chores are strictly excluded.</li>
-      <li><b>Support & Safety:</b> For any issues or delays, always contact customer care first, never staff directly.</li>
-      <li><b>Jurisdiction:</b> All disputes shall be settled in Ahmedabad, India.</li>
-      <li><b>Rate Revision:</b> Rates are subject to modification with prior digital/written notice of 5 to 10 days.</li>
-    </ol>
-
-    <div class="declaration">
-      I, <b id="decl_clientName">-</b>, have carefully read and understood all terms and conditions mentioned above. By signing this, I agree to legally abide by these rules and avail of the services from Passtela Care Pvt Ltd and Passtela Surgical Hub.
-    </div>
-
-    <!-- Signature Box Area -->
-    <div class="sig-area">
-      <p style="font-weight: bold; margin: 0 0 10px 0; color: #0056b3; font-size: 15px;">સહી કરો (Client Signature):</p>
-      <canvas id="sigCanvas"></canvas>
-      <div class="btn-group">
-        <button type="button" class="btn-clear" onclick="clearCanvas()">ફરી સહી કરો (Clear)</button>
-        <button type="button" id="submitBtn" class="btn-submit" onclick="submitForm()">સબમિટ કરો (Submit Consent)</button>
+    <!-- Bottom Footer Bar -->
+    <div style="display:flex; width:100%;">
+      <div class="footer-bar" style="flex:2;">
+        <div>📞 +91 90999 93666 | +91 90999 93667</div>
+        <div>✉️ info@passtelacare.com</div>
+        <div>🌐 www.passtelacare.com</div>
+      </div>
+      <div class="footer-green" style="flex:1;">
+        402 Milestone Nr. Doordarshan Metro Station, Drive-in Cinema Road, Thaltej, Ahmedabad, Gujarat 380054
       </div>
     </div>
 
@@ -221,11 +169,10 @@
 
   const urlParams = new URLSearchParams(window.location.search);
   const token = urlParams.get('id');
-  let fetchedData = {};
 
   window.onload = function() {
     if (!token) {
-      document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>Error: Secure Link Is Invalid Or Missing!</span>";
+      document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>Error: Secure Token Missing!</span>";
       return;
     }
     fetchData();
@@ -236,31 +183,17 @@
       .then(res => res.json())
       .then(data => {
         if (data.status === "success") {
-          fetchedData = data;
           document.getElementById('loadingDiv').style.display = 'none';
           document.getElementById('formContent').style.display = 'block';
           
-          document.getElementById('v_inquiryNo').innerText = data.inquiryNo || '-';
-          document.getElementById('v_date').innerText = new Date().toLocaleDateString('en-GB');
+          document.getElementById('v_date').innerText = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
           document.getElementById('v_clientName').innerText = data.clientName || '-';
-          document.getElementById('decl_clientName').innerText = data.clientName || '-';
-          document.getElementById('v_relation').innerText = data.relation || '-';
           document.getElementById('v_patientName').innerText = data.patientName || '-';
-          document.getElementById('v_ageGender').innerText = (data.patientAge || '-') + ' / ' + (data.gender || '-');
+          document.getElementById('v_age').innerText = data.patientAge || '-';
+          document.getElementById('v_gender').innerText = data.gender || '-';
           document.getElementById('v_phone').innerText = data.phone || '-';
           document.getElementById('v_email').innerText = data.email || '-';
           document.getElementById('v_address').innerText = data.address || '-';
-
-          // Render Equipment Table if present
-          if (data.equipments && data.equipments.length > 0) {
-            let html = "";
-            data.equipments.forEach(eq => {
-              html += `<tr><td>${eq.name}</td><td>${eq.freq}</td><td>₹${eq.rate} /-</td></tr>`;
-            });
-            document.getElementById('eqpTbody').innerHTML = html;
-          } else {
-            document.getElementById('eqpTbody').innerHTML = "<tr><td colspan='3'>No medical equipment selected.</td></tr>";
-          }
 
           initCanvas();
         } else {
@@ -280,7 +213,7 @@
     function resize() {
       let rect = canvas.getBoundingClientRect();
       canvas.width = rect.width;
-      canvas.height = 170;
+      canvas.height = 150;
     }
     resize();
 
@@ -339,7 +272,7 @@
         document.getElementById('message').innerHTML = "<span style='color:green;'>Safaltapurvak submit thai gayu! PDF Drive ma save thai gayi chhe.</span>";
         document.getElementById('formContent').style.display = 'none';
         if (result.pdfUrl) {
-          setTimeout(() => { window.location.href = result.pdfUrl; }, 1500);
+          setTimeout(() => { window.location.href = result.pdfUrl; }, 1200);
         }
       } else {
         document.getElementById('submitBtn').disabled = false;
