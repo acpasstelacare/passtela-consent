@@ -229,7 +229,7 @@
   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6My529gHzFHh1JFuszfJif5TW5L5EiHgCetQlrUxmJ_Ok_KKDxjAgMSgR3voTRHvnQg/exec"; 
   const token = new URLSearchParams(window.location.search).get('id');
 
-  // Live Clock Function
+  // Live Digital Clock
   function startClock() {
     setInterval(() => {
       const now = new Date();
@@ -240,14 +240,32 @@
     }, 1000);
   }
 
-  // Safe Getter Helper
-  function getVal(obj, ...keys) {
+  // Universal Value Helper
+  function findVal(data, ...keys) {
+    if (!data) return "-";
     for (let k of keys) {
-      if (obj && obj[k] !== undefined && obj[k] !== null && obj[k] !== "") {
-        return obj[k];
+      if (data[k] !== undefined && data[k] !== null && data[k] !== "") {
+        return data[k];
+      }
+    }
+    // Search inside nested objects if any
+    for (let prop in data) {
+      if (typeof data[prop] === 'object' && data[prop] !== null) {
+        for (let k of keys) {
+          if (data[prop][k] !== undefined && data[prop][k] !== null && data[prop][k] !== "") {
+            return data[prop][k];
+          }
+        }
       }
     }
     return "-";
+  }
+
+  function formatCost(val) {
+    if (!val || val === "-" || val === "") return "-";
+    let strVal = String(val).trim();
+    if (strVal.startsWith("₹") || strVal.toLowerCase().includes("per day")) return strVal;
+    return "₹" + strVal + " /- PER DAY";
   }
 
   window.onload = function() {
@@ -268,49 +286,49 @@
         document.getElementById('loadingDiv').style.display = 'none';
         document.getElementById('formContent').style.display = 'block';
 
-        // 1. Patient Info Binding
-        const p = data.patientInfo || data;
-        document.getElementById('v_inquiryNo').innerText = getVal(p, 'inquiryNo', 'inquiry_no');
-        document.getElementById('v_date').innerText = getVal(p, 'date', 'Date') !== '-' ? getVal(p, 'date', 'Date') : new Date().toLocaleDateString('en-GB');
-        const cName = getVal(p, 'clientName', 'ClientName', 'patientName');
+        // 1. Patient Details
+        document.getElementById('v_inquiryNo').innerText = findVal(data, 'inquiryNo', 'inquiry_no', 'token');
+        document.getElementById('v_date').innerText = findVal(data, 'date', 'Date') !== '-' ? findVal(data, 'date', 'Date') : new Date().toLocaleDateString('en-GB');
+        const cName = findVal(data, 'clientName', 'ClientName', 'patientName');
         document.getElementById('v_clientName').innerText = cName;
         document.getElementById('decl_clientName').innerText = cName;
-        document.getElementById('v_patientName').innerText = getVal(p, 'patientName', 'PatientName');
-        document.getElementById('v_age').innerText = getVal(p, 'patientAge', 'age', 'PatientAge');
-        document.getElementById('v_gender').innerText = getVal(p, 'gender', 'Gender');
-        document.getElementById('v_mobile').innerText = getVal(p, 'phone', 'mobile', 'Phone');
-        document.getElementById('v_email').innerText = getVal(p, 'email', 'Email');
-        document.getElementById('v_address').innerText = getVal(p, 'address', 'Address');
+        document.getElementById('v_patientName').innerText = findVal(data, 'patientName', 'PatientName');
+        document.getElementById('v_age').innerText = findVal(data, 'patientAge', 'age', 'PatientAge');
+        document.getElementById('v_gender').innerText = findVal(data, 'gender', 'Gender');
+        document.getElementById('v_mobile').innerText = findVal(data, 'phone', 'mobile', 'Phone');
+        document.getElementById('v_email').innerText = findVal(data, 'email', 'Email');
+        document.getElementById('v_address').innerText = findVal(data, 'address', 'Address');
 
-        // 2. Part A Service Rates Binding
-        const a = data.partA || data;
-        document.getElementById('r_n_24').innerText = getVal(a, 'n_24', 'N_24_RATE');
-        document.getElementById('r_n_d').innerText = getVal(a, 'n_d', 'N_D_RATE');
-        document.getElementById('r_n_n').innerText = getVal(a, 'n_n', 'N_N_RATE');
-        document.getElementById('r_n_pt').innerText = getVal(a, 'n_pt', 'N_PT_RATE');
-        document.getElementById('r_ct_24').innerText = getVal(a, 'ct_24', 'CT_24_RATE');
-        document.getElementById('r_ct_d').innerText = getVal(a, 'ct_d', 'CT_D_RATE');
-        document.getElementById('r_ct_n').innerText = getVal(a, 'ct_n', 'CT_N_RATE');
-        document.getElementById('r_ct_pt').innerText = getVal(a, 'ct_pt', 'CT_PT_RATE');
-        document.getElementById('r_baby_24').innerText = getVal(a, 'baby_24', 'BABY_24_RATE');
-        document.getElementById('r_baby_d').innerText = getVal(a, 'baby_d', 'BABY_D_RATE');
-        document.getElementById('r_baby_n').innerText = getVal(a, 'baby_n', 'BABY_N_RATE');
-        document.getElementById('r_baby_pt').innerText = getVal(a, 'baby_pt', 'BABY_PT_RATE');
-        document.getElementById('r_physio').innerText = getVal(a, 'physio', 'PHYSIO_RATE');
+        // 2. Part A Service Rates
+        document.getElementById('r_n_24').innerText = formatCost(findVal(data, 'n_24', 'N_24_RATE'));
+        document.getElementById('r_n_d').innerText = formatCost(findVal(data, 'n_d', 'N_D_RATE'));
+        document.getElementById('r_n_n').innerText = formatCost(findVal(data, 'n_n', 'N_N_RATE'));
+        document.getElementById('r_n_pt').innerText = formatCost(findVal(data, 'n_pt', 'N_PT_RATE'));
 
-        // 3. Part B Scope of Work Binding
-        const b = data.partB || data;
-        document.getElementById('s_nursing').innerText = getVal(b, 'nursing_works', 'NURSING_WORKS');
-        document.getElementById('s_ct').innerText = getVal(b, 'ct_works', 'CT_WORKS');
-        document.getElementById('s_baby').innerText = getVal(b, 'baby_works', 'BABY_WORKS');
+        document.getElementById('r_ct_24').innerText = formatCost(findVal(data, 'ct_24', 'CT_24_RATE'));
+        document.getElementById('r_ct_d').innerText = formatCost(findVal(data, 'ct_d', 'CT_D_RATE'));
+        document.getElementById('r_ct_n').innerText = formatCost(findVal(data, 'ct_n', 'CT_N_RATE'));
+        document.getElementById('r_ct_pt').innerText = formatCost(findVal(data, 'ct_pt', 'CT_PT_RATE'));
+
+        document.getElementById('r_baby_24').innerText = formatCost(findVal(data, 'baby_24', 'BABY_24_RATE'));
+        document.getElementById('r_baby_d').innerText = formatCost(findVal(data, 'baby_d', 'BABY_D_RATE'));
+        document.getElementById('r_baby_n').innerText = formatCost(findVal(data, 'baby_n', 'BABY_N_RATE'));
+        document.getElementById('r_baby_pt').innerText = formatCost(findVal(data, 'baby_pt', 'BABY_PT_RATE'));
+
+        document.getElementById('r_physio').innerText = formatCost(findVal(data, 'physio', 'PHYSIO_RATE'));
+
+        // 3. Part B Scope
+        document.getElementById('s_nursing').innerText = findVal(data, 'nursing_works', 'NURSING_WORKS');
+        document.getElementById('s_ct').innerText = findVal(data, 'ct_works', 'CT_WORKS');
+        document.getElementById('s_baby').innerText = findVal(data, 'baby_works', 'BABY_WORKS');
 
         // 4. Part C Dynamic Equipment List
         const tbody = document.getElementById('equip_tbody');
         tbody.innerHTML = '';
-        const eqList = data.equipmentList || data.equipments;
+        let eqList = data.equipmentList || data.equipments || (data.partC ? data.partC : null);
         if (eqList && Array.isArray(eqList) && eqList.length > 0) {
           eqList.forEach(eq => {
-            let name = typeof eq === 'object' ? (eq.name || eq.equipment) : eq;
+            let name = typeof eq === 'object' ? (eq.name || eq.equipment || eq.service) : eq;
             let rate = typeof eq === 'object' ? (eq.rate || eq.cost || '-') : '-';
             tbody.innerHTML += `<tr><td><b>${name}</b></td><td style="text-align:center;">Per Day</td><td>${rate !== '-' ? '₹' + rate + ' /-' : '-'}</td></tr>`;
           });
@@ -318,11 +336,11 @@
           tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">કોઈ ઇક્વિપમેન્ટ પસંદ કરેલ નથી (No Equipment Selected)</td></tr>';
         }
 
-        // 5. Deposit Binding
-        const depAmt = getVal(data, 'depositAmount', 'deposite', 'deposit');
+        // 5. Deposit Details
+        const depAmt = findVal(data, 'depositAmount', 'deposite', 'deposit');
         if (depAmt !== '-') document.getElementById('v_deposit').innerText = depAmt;
         
-        const depWords = getVal(data, 'depositInWords', 'depositeinwords');
+        const depWords = findVal(data, 'depositInWords', 'depositeinwords');
         if (depWords !== '-') document.getElementById('v_deposit_words').innerText = depWords;
 
         initCanvas();
