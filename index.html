@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Passtelacare - Dynamic Patient Consent Form</title>
+  <title>Passtelacare - Patient Consent Form</title>
   <style>
     @page { size: A4; margin: 0; }
     body { font-family: Arial, sans-serif; background: #555; margin: 0; padding: 20px 0; color: #000; }
@@ -47,8 +47,8 @@
     .section-head { font-weight: bold; font-size: 16px; margin: 10px 0 6px 0; text-transform: uppercase; text-align: center; }
     .section-subhead { font-size: 14.5px; text-align: center; font-style: italic; margin-bottom: 10px; }
 
-    .data-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 14px; }
-    .data-table th, .data-table td { border: 1px solid #555; padding: 7px 10px; text-align: left; }
+    .data-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 13.5px; }
+    .data-table th, .data-table td { border: 1px solid #555; padding: 6px 8px; text-align: left; }
     .data-table th { background: #f2f2f2; font-weight: bold; text-align: center; }
 
     .page-number {
@@ -124,7 +124,7 @@
     <div class="footer-img-container"><img src="FOOTER.png" alt="Footer"><div class="page-number">1 OF 5</div></div>
   </div>
 
-  <!-- PAGE 2 OF 5: PART A DYNAMIC TABLE -->
+  <!-- PAGE 2 OF 5 -->
   <div class="page">
     <div class="header-spacer"></div>
     <div class="header-img-container"><img src="NEWHEADER.png" alt="Header"></div>
@@ -139,15 +139,27 @@
             <th>Cost (Per Day / Session)</th>
           </tr>
         </thead>
-        <tbody id="partA_body">
-          <!-- Dynamic Data Will Be Inserted Here -->
+        <tbody>
+          <tr><td rowspan="4"><b>Nursing Care</b></td><td>24 Hours</td><td>24 Hours</td><td>₹2500 /- PER DAY</td></tr>
+          <tr><td>DAY</td><td>9 AM TO 7 PM</td><td>₹1200 /- PER DAY</td></tr>
+          <tr><td>NIGHT</td><td>8 PM TO 8 AM</td><td>₹1200 /- PER DAY</td></tr>
+          <tr><td>PART TIME</td><td>1 TO 4 HRS</td><td>₹650 /- PER DAY</td></tr>
+          <tr><td rowspan="4"><b>Caretaker<br>(Personal Care)</b></td><td>24 Hours</td><td>24 Hours</td><td>₹1500 /- PER DAY</td></tr>
+          <tr><td>DAY</td><td>8 AM TO 8 PM</td><td>₹800 /- PER DAY</td></tr>
+          <tr><td>NIGHT</td><td>8 PM TO 8 AM</td><td>₹800 /- PER DAY</td></tr>
+          <tr><td>PART TIME</td><td>1 HRS</td><td>₹400 /- PER DAY</td></tr>
+          <tr><td rowspan="4"><b>Baby Caretaker</b></td><td>24 Hours</td><td>24 Hours</td><td>₹1900 /- PER DAY</td></tr>
+          <tr><td>DAY</td><td>9 AM TO 7 PM</td><td>₹1000 /- PER DAY</td></tr>
+          <tr><td>NIGHT</td><td>8 PM TO 8 AM</td><td>₹1000 /- PER DAY</td></tr>
+          <tr><td>PART TIME</td><td>1 TO 4 HRS</td><td>₹500 /- PER DAY</td></tr>
+          <tr><td><b>Physiotherapy</b></td><td>Per Session</td><td>30-60 Mins per session</td><td>₹750 /- PER DAY</td></tr>
         </tbody>
       </table>
     </div>
     <div class="footer-img-container"><img src="FOOTER.png" alt="Footer"><div class="page-number">2 OF 5</div></div>
   </div>
 
-  <!-- PAGE 3 OF 5: PART B DYNAMIC TABLE -->
+  <!-- PAGE 3 OF 5 -->
   <div class="page">
     <div class="header-spacer"></div>
     <div class="header-img-container"><img src="NEWHEADER.png" alt="Header"></div>
@@ -158,15 +170,18 @@
         <thead>
           <tr><th width="30%">Service Category</th><th width="70%">Detailed Scope of Work & Description</th></tr>
         </thead>
-        <tbody id="partB_body">
-          <!-- Dynamic Data Will Be Inserted Here -->
+        <tbody>
+          <tr><td><b>Nursing Care</b></td><td>Clinical Nursing Care, Injections, IV Drip, Medication, Vital Monitoring, Tube Feeding, Catheter Care, Bedsore Dressing, Post-Op Care.</td></tr>
+          <tr><td><b>Caretaker<br>(Personal Care)</b></td><td>BATH - SPONGING, BED SHEET CHANGE, BEDSORE DRESSING, CHANGE POSITION, CLOTH CHANGE, CLOTH WASH, DIAPER CHANGING, EMPTY COLOSTOMY BAG, EMPTY URINE BAG, GENTLE MASSAGE, GIVE BED PAN, GIVE MEDICINE, MINOR DRESSING, EXERCISES, LIFTING ASSISTANCE, PATIENTS ROOM CLEANING, RYLES TUBE FEEDING, STOOL CLEANING, SUPPORT IN WALKING, WHEELCHAIR TRANSFER.</td></tr>
+          <tr><td><b>Baby Caretaker</b></td><td>BABY BATH, BABY MASSAGE, BABY- MUMMY MASSAGE, DIAPER CHANGE, WASH BABY CLOTH.</td></tr>
+          <tr><td><b>Physiotherapy</b></td><td>As prescribed by the Doctors.</td></tr>
         </tbody>
       </table>
     </div>
     <div class="footer-img-container"><img src="FOOTER.png" alt="Footer"><div class="page-number">3 OF 5</div></div>
   </div>
 
-  <!-- PAGE 4 OF 5: PART C DYNAMIC TABLE & DEPOSIT -->
+  <!-- PAGE 4 OF 5 -->
   <div class="page">
     <div class="header-spacer"></div>
     <div class="header-img-container"><img src="NEWHEADER.png" alt="Header"></div>
@@ -176,8 +191,15 @@
         <thead>
           <tr><th>Medical Equipment</th><th>Frequency</th><th>Total Cost (Per day)</th></tr>
         </thead>
-        <tbody id="partC_body">
-          <!-- Dynamic Data Will Be Inserted Here -->
+        <tbody>
+          <tr><td>3 FUNCTION BED</td><td>Per Day</td><td>₹100 /-</td></tr>
+          <tr><td>5 FUNCTION BED</td><td>Per Day</td><td>₹200 /-</td></tr>
+          <tr><td>AIR BED</td><td>Per Day</td><td>₹300 /-</td></tr>
+          <tr><td>SUCTION MACHINE</td><td>Per Day</td><td>₹400 /-</td></tr>
+          <tr><td>OXYGEN MACHINE</td><td>Per Day</td><td>₹500 /-</td></tr>
+          <tr><td>WHEEL CHAIR</td><td>Per Day</td><td>₹600 /-</td></tr>
+          <tr><td>CVT PUMP</td><td>Per Day</td><td>₹700 /-</td></tr>
+          <tr><td>MONITOR</td><td>Per Day</td><td>₹800 /-</td></tr>
         </tbody>
       </table>
       <div style="font-style:italic; font-size:13.5px; margin-top:10px;">(Note: GST will be charged extra as per government norms on equipment rental/purchase from Passtela Surgical Hub).</div>
@@ -254,7 +276,7 @@
           document.getElementById('loadingDiv').style.display = 'none';
           document.getElementById('formContent').style.display = 'block';
 
-          // Header Info Binding
+          // Header Info Binding from Sheet
           document.getElementById('v_inquiryNo').innerText = data.inquiryNo || '-';
           document.getElementById('v_date').innerText = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
           document.getElementById('v_clientName').innerText = data.clientName || data.patientName || '-';
@@ -270,74 +292,12 @@
           if(data.depositAmount) document.getElementById('v_depositAmount').innerText = data.depositAmount;
           if(data.depositInWords) document.getElementById('v_depositInWords').innerText = data.depositInWords;
 
-          // Render Dynamic Tables
-          renderPartA(data.partA);
-          renderPartB(data.partB);
-          renderPartC(data.partC);
-
           initCanvas();
         }
       })
       .catch(err => {
         document.getElementById('loadingDiv').innerHTML = '<div class="error">સર્વર કનેક્શન એરર: ' + err + '</div>';
       });
-  }
-
-  // Render Part A Table
-  function renderPartA(items) {
-    const tbody = document.getElementById('partA_body');
-    tbody.innerHTML = '';
-    if (!items || items.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;">કોઈ માહિતી મળી નથી.</td></tr>';
-      return;
-    }
-    items.forEach(item => {
-      let tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><b>${item.service || '-'}</b></td>
-        <td>${item.shift || '-'}</td>
-        <td>${item.duration || '-'}</td>
-        <td>${item.cost || '-'}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
-
-  // Render Part B Table
-  function renderPartB(items) {
-    const tbody = document.getElementById('partB_body');
-    tbody.innerHTML = '';
-    if (!items || items.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="2" style="text-align:center;">કોઈ માહિતી મળી નથી.</td></tr>';
-      return;
-    }
-    items.forEach(item => {
-      let tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><b>${item.category || item.service || '-'}</b></td>
-        <td>${item.scope || item.description || '-'}</td>
-      `;
-      tbody.appendChild(tr);
-    });
-  }
-
-  // Render Part C Table
-  function renderPartC(items) {
-    const tbody = document.getElementById('partC_body');
-    tbody.innerHTML = '';
-    if (!items || items.length === 0) {
-      tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">કોઈ માહિતી મળી નથી.</td></tr>';
-      return;
-    }
-    items.forEach(item => {
-      let tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td><b>${item.equipment || item.service || '-'}</b></td>
-        <td>${item.frequency || 'Per Day'}</td>
-        <td>${item.cost || '-'}</td>
-      `;
-      tbody.appendChild(tr);
-    });
   }
 
   let canvas, ctx, isDrawing = false;
