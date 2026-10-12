@@ -6,9 +6,9 @@
   <title>Passtelacare - Patient Consent Form</title>
   <style>
     @page { size: A4; margin: 0; }
-    body { font-family: Arial, sans-serif; background: #555; margin: 0; padding: 20px 0; color: #000; line-height: 1.45; }
+    body { font-family: Arial, sans-serif; background: #555; margin: 0; padding: 20px 0; color: #000; }
     
-    /* Perfect A4 Portrait Proportional Styling with Increased Fonts & Spacing */
+    /* Perfect A4 Portrait Proportional Styling with Increased Fonts & Spacing for First 4 Pages */
     .page {
       width: 794px;
       min-height: 1123px;
@@ -26,6 +26,27 @@
       padding: 45px 55px 20px 55px;
     }
 
+    /* Extra spacing & large fonts for first 4 pages */
+    .page-p1 { line-height: 1.8; }
+    .page-p1 .details-list { font-size: 15.5px; line-height: 2.1; margin: 12px 0; padding-left: 20px; }
+    .page-p1 .company-header { font-size: 14.5px; line-height: 1.7; }
+    .page-p1 .company-header h2 { font-size: 19px; }
+    .page-p1 .company-header h3 { font-size: 16px; }
+
+    .page-p2 { line-height: 1.8; }
+    .page-p2 .data-table { font-size: 14.5px; line-height: 1.6; }
+
+    .page-p3 { line-height: 1.8; }
+    .page-p3 .data-table { font-size: 13.5px; line-height: 1.8; }
+
+    .page-p4 { line-height: 1.8; }
+    .page-p4 .data-table { font-size: 14.5px; line-height: 1.6; }
+
+    /* Page 5 Standard Spacing */
+    .page-p5 { line-height: 1.45; }
+    .page-p5 .terms-text { font-size: 12px; line-height: 1.6; color: #111; padding-left: 16px; margin-top: 6px; }
+    .page-p5 .terms-text li { margin-bottom: 6px; }
+
     /* Top Logo & Header */
     .brand-logo { text-align: center; margin-bottom: 6px; }
     .brand-logo-text { color: #689f38; font-size: 26px; font-weight: bold; font-family: sans-serif; margin: 0; }
@@ -36,21 +57,15 @@
     .company-header h3 { font-size: 14px; margin: 8px 0 2px 0; color: #000; font-weight: bold; }
     .company-header a { color: #0056b3; text-decoration: underline; }
 
-    .doc-title { text-align: center; font-size: 17px; font-weight: bold; text-decoration: underline; margin: 20px 0 12px 0; letter-spacing: 0.5px; }
+    .doc-title { text-align: center; font-size: 19px; font-weight: bold; text-decoration: underline; margin: 20px 0 12px 0; letter-spacing: 0.5px; }
 
     /* Tables & Formatting */
-    .section-head { font-weight: bold; font-size: 14px; margin: 12px 0 6px 0; text-transform: uppercase; text-align: center; }
-    .section-subhead { font-size: 12.5px; text-align: center; font-style: italic; margin-bottom: 10px; }
+    .section-head { font-weight: bold; font-size: 16px; margin: 14px 0 8px 0; text-transform: uppercase; text-align: center; }
+    .section-subhead { font-size: 14.5px; text-align: center; font-style: italic; margin-bottom: 12px; }
 
-    .data-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12.5px; line-height: 1.4; }
-    .data-table th, .data-table td { border: 1px solid #555; padding: 7px 10px; text-align: left; }
+    .data-table { width: 100%; border-collapse: collapse; margin-top: 8px; }
+    .data-table th, .data-table td { border: 1px solid #555; padding: 8px 12px; text-align: left; }
     .data-table th { background: #f2f2f2; font-weight: bold; text-align: center; }
-
-    .details-list { font-size: 13.5px; line-height: 1.85; margin: 8px 0; padding-left: 18px; }
-    .details-list li { margin-bottom: 4px; }
-
-    .terms-text { font-size: 12px; line-height: 1.6; color: #111; padding-left: 16px; margin-top: 6px; }
-    .terms-text li { margin-bottom: 6px; }
 
     /* Footer Design */
     .footer-container { width: 100%; margin-top: auto; }
@@ -112,7 +127,7 @@
 <div id="formContent" style="display:none;">
 
   <!-- PAGE 1 OF 5 -->
-  <div class="page">
+  <div class="page page-p1">
     <div class="page-body">
       <div class="brand-logo">
         <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
@@ -134,8 +149,8 @@
         <div>GST No: 24CYKPK3744B1ZN, PAN No: CYKPK37448</div>
       </div>
       <div class="doc-title">CONSENT CUM QUOTATION FOR SERVICES</div>
-      <div style="font-size:13.5px; margin-bottom:10px;"><b>Date:</b> <span id="v_date">01/Jan/1970</span></div>
-      <div style="font-weight:bold; font-size:13.5px;">Client & Patient Details</div>
+      <div style="font-size:15.5px; margin-bottom:12px;"><b>Date:</b> <span id="v_date">01/Jan/1970</span></div>
+      <div style="font-weight:bold; font-size:15.5px;">Client & Patient Details</div>
       <ul class="details-list">
         <li><b>Client / Relative Name:</b> <span id="v_clientName">-</span></li>
         <li><b>Patient Name:</b> <span id="v_patientName">-</span> (Age: <span id="v_age">-</span> Yrs | Gender: <span id="v_gender">-</span>)</li>
@@ -159,13 +174,13 @@
   </div>
 
   <!-- PAGE 2 OF 5 -->
-  <div class="page">
+  <div class="page page-p2">
     <div class="page-body">
       <div class="brand-logo">
         <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
         <div class="brand-logo-sub">BETTER FOR YOU</div>
       </div>
-      <div class="section-head">PART A: SERVICES CHARGES & SHIFTS<br><span style="font-size:12px; font-weight:normal;">(By Passtela Care Pvt Ltd – Without GST)</span></div>
+      <div class="section-head">PART A: SERVICES CHARGES & SHIFTS<br><span style="font-size:13.5px; font-weight:normal;">(By Passtela Care Pvt Ltd – Without GST)</span></div>
       <table class="data-table">
         <thead>
           <tr>
@@ -247,7 +262,7 @@
           </tr>
         </tbody>
       </table>
-      <div style="font-style:italic; font-size:12px; margin-top:12px; text-align:center;">We propose the following professional home healthcare services and shift options:</div>
+      <div style="font-style:italic; font-size:14px; margin-top:15px; text-align:center;">We propose the following professional home healthcare services and shift options:</div>
     </div>
     <div class="footer-container">
       <div class="footer-bar">
@@ -265,7 +280,7 @@
   </div>
 
   <!-- PAGE 3 OF 5 -->
-  <div class="page">
+  <div class="page page-p3">
     <div class="page-body">
       <div class="brand-logo">
         <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
@@ -283,19 +298,19 @@
         <tbody>
           <tr>
             <td><b>Nursing Care</b></td>
-            <td style="font-size:11.5px; line-height:1.5;">Clinical Nursing Care, Injections, IV Drip, Medication, Vital Monitoring, Tube Feeding, Catheter Care, Bedsore Dressing, Post-Op Care.</td>
+            <td>Clinical Nursing Care, Injections, IV Drip, Medication, Vital Monitoring, Tube Feeding, Catheter Care, Bedsore Dressing, Post-Op Care.</td>
           </tr>
           <tr>
             <td><b>Caretaker<br>(Personal Care)</b></td>
-            <td style="font-size:11.5px; line-height:1.5;">BATH - SPONGING, BED SHEET CHANGE, BEDSORE DRESSING, CHANGE POSITION, CLOTH CHANGE, CLOTH WASH, DIAPER CHANGING, EMPTY COLOSTOMY BAG, EMPTY URINE BAG, GENTLE MASSAGE (1 TIME IN A DAY IF PRESCRIBED), GIVE BED PAN, GIVE MEDICINE, MINOR DRESSING / WOUND CARE, EXERCISES (IF PRESCRIBED), LIFTING ASSISTANCE, PATIENTS ROOM CLEANING, RYLES TUBE FEEDING, STOOL CLEANING, SUPPORT IN WALKING, WHEELCHAIR TRANSFER.</td>
+            <td>BATH - SPONGING, BED SHEET CHANGE, BEDSORE DRESSING, CHANGE POSITION, CLOTH CHANGE, CLOTH WASH, DIAPER CHANGING, EMPTY COLOSTOMY BAG, EMPTY URINE BAG, GENTLE MASSAGE (1 TIME IN A DAY IF PRESCRIBED), GIVE BED PAN, GIVE MEDICINE, MINOR DRESSING / WOUND CARE, EXERCISES (IF PRESCRIBED), LIFTING ASSISTANCE, PATIENTS ROOM CLEANING, RYLES TUBE FEEDING, STOOL CLEANING, SUPPORT IN WALKING, WHEELCHAIR TRANSFER.</td>
           </tr>
           <tr>
             <td><b>Baby Caretaker</b></td>
-            <td style="font-size:11.5px; line-height:1.5;">BABY BATH, BABY MASSAGE, BABY- MUMMY MASSAGE, DIAPER CHANGE, WASH BABY CLOTH.</td>
+            <td>BABY BATH, BABY MASSAGE, BABY- MUMMY MASSAGE, DIAPER CHANGE, WASH BABY CLOTH.</td>
           </tr>
           <tr>
             <td><b>Physiotherapy</b></td>
-            <td style="font-size:11.5px; line-height:1.5;">As prescribed by the Doctors.</td>
+            <td>As prescribed by the Doctors.</td>
           </tr>
         </tbody>
       </table>
@@ -316,13 +331,13 @@
   </div>
 
   <!-- PAGE 4 OF 5 -->
-  <div class="page">
+  <div class="page page-p4">
     <div class="page-body">
       <div class="brand-logo">
         <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
         <div class="brand-logo-sub">BETTER FOR YOU</div>
       </div>
-      <div class="section-head">PART C: RENTAL MEDICAL EQUIPMENT<br><span style="font-size:12px; font-weight:normal;">(By Passtela Surgical Hub – With GST Applicable)</span></div>
+      <div class="section-head">PART C: RENTAL MEDICAL EQUIPMENT<br><span style="font-size:13.5px; font-weight:normal;">(By Passtela Surgical Hub – With GST Applicable)</span></div>
       <table class="data-table">
         <thead>
           <tr>
@@ -346,9 +361,9 @@
           <tr><td>JKL</td><td>Per Day</td><td>₹1200 /-</td></tr>
         </tbody>
       </table>
-      <div style="font-style:italic; font-size:12px; margin-top:10px;">(Note: GST will be charged extra as per government norms on equipment rental/purchase from Passtela Surgical Hub).</div>
+      <div style="font-style:italic; font-size:13.5px; margin-top:12px;">(Note: GST will be charged extra as per government norms on equipment rental/purchase from Passtela Surgical Hub).</div>
       <br>
-      <div style="font-size:13px;">
+      <div style="font-size:15px;">
         <b>DEPOSITE :</b><br>
         <b>Applicable deposit for medical service & medical equipment :</b> ₹5000<br>
         <b>In words :</b> RUPEES FIVE THOUSAND ONLY
@@ -356,194 +371,3 @@
     </div>
     <div class="footer-container">
       <div class="footer-bar">
-        <div class="footer-left">
-          <span>📞 +91 90999 93666 | +91 90999 93667</span>
-          <span>✉️ info@passtelacare.com</span>
-          <span>🌐 www.passtelacare.com</span>
-        </div>
-        <div class="footer-right">
-          402 Milestone Nr. Doordarshan Metro Station, Drive-in Cinema Road, Thaltej, Ahmedabad, Gujarat 380054
-        </div>
-      </div>
-      <div class="page-number">4 OF 5</div>
-    </div>
-  </div>
-
-  <!-- PAGE 5 OF 5 -->
-  <div class="page">
-    <div class="page-body">
-      <div class="brand-logo">
-        <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
-        <div class="brand-logo-sub">BETTER FOR YOU</div>
-      </div>
-      <div style="font-weight:bold; font-size:13.5px; margin:10px 0 6px 0;">Terms and Conditions</div>
-      <ol class="terms-text">
-        <li><b>Billing Structure:</b> Services rendered by Passtela Care Pvt Ltd will be billed <b>without GST</b>, whereas medical equipment provided by Passtela Surgical Hub will be billed <b>with GST</b>.</li>
-        <li><b>Payment Terms:</b> A 15-day advance payment is required to start the service. Regular payments must be made within 3 days of receiving the invoice; otherwise, services will be terminated without notice. An extra 1% of the invoice amount shall be levied for non-payment within 3 days.</li>
-        <li><b>Payment Modes:</b> UPI / NEFT / Digital modes, Cash, or Cheques accepted. Rs. 150 per visit will be charged extra for at-home cash/cheque pickup.</li>
-        <li><b>Staff Direct Hiring Restriction:</b> If the company discovers that you have contacted or taken direct service from the staff introduced to you by the company, you will have to pay Rs. 50,000/- (Fifty Thousand only) as company fees for hiring and training efforts.</li>
-        <li><b>Scope of Work:</b> Passtela Care staff will strictly perform patient-related care determined by the company. Involvement in outside housework (cooking, cleaning, garbage, etc.) may lead to immediate service termination.</li>
-        <li><b>Support & Safety:</b> For any issues or staff arrival delays, always call the company customer care number first—never call the staff directly. While we ensure the best care as per medical guidelines, Passtela Care and its staff are not responsible for unforeseen health complications.</li>
-        <li><b>Jurisdiction:</b> All disputes shall be settled by arbitration in Ahmedabad, India, governed by the laws of India.</li>
-        <li><b>Rate Revision / Modification:</b> Passtelacare Pvt Ltd and Passtelacare Surgical Hub reserve the right to revise or modify service and rental rates at any time. In the event of any rate changes, prior written or digital notice of 5 to 10 days will be provided to the client.</li>
-      </ol>
-
-      <div style="font-weight:bold; font-size:13px; margin-top:10px;">Approval & Declaration</div>
-      <div style="font-size:12px; margin-top:4px; line-height:1.5;">
-        I, <b id="decl_clientName">-</b>, have carefully read and understood all terms and conditions mentioned above. By signing this, I agree to legally abide by these rules and avail of the services from Passtela Care Pvt Ltd and Passtelacare Surgical Hub for my relative.
-      </div>
-
-      <!-- Signature Area -->
-      <div class="sig-box">
-        <div style="font-weight:bold; color:#0072bc; margin-bottom:6px; font-size:13px;">સહી કરો (Client / Relative Signature):</div>
-        <canvas id="sigCanvas"></canvas>
-        <div class="btn-group">
-          <button type="button" class="btn-clear" onclick="clearCanvas()">ફરી સહી કરો (Clear)</button>
-          <button type="button" id="submitBtn" class="btn-submit" onclick="submitForm()">સબમિટ કરો (Submit Consent)</button>
-        </div>
-      </div>
-    </div>
-    <div class="footer-container">
-      <div class="footer-bar">
-        <div class="footer-left">
-          <span>📞 +91 90999 93666 | +91 90999 93667</span>
-          <span>✉️ info@passtelacare.com</span>
-          <span>🌐 www.passtelacare.com</span>
-        </div>
-        <div class="footer-right">
-          402 Milestone Nr. Doordarshan Metro Station, Drive-in Cinema Road, Thaltej, Ahmedabad, Gujarat 380054
-        </div>
-      </div>
-      <div class="page-number">5 OF 5</div>
-    </div>
-  </div>
-
-</div>
-
-<div id="message"></div>
-
-<script>
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6My529gHzFHh1JFuszfJif5TW5L5EiHgCetQlrUxmJ_Ok_KKDxjAgMSgR3voTRHvnQg/exec"; 
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const token = urlParams.get('id');
-
-  window.onload = function() {
-    if (!token) {
-      document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>Error: Secure Token Missing!</span>";
-      return;
-    }
-    fetchData();
-  };
-
-  function fetchData() {
-    fetch(SCRIPT_URL + "?id=" + token)
-      .then(res => res.json())
-      .then(data => {
-        if (data.status === "success") {
-          document.getElementById('loadingDiv').style.display = 'none';
-          document.getElementById('formContent').style.display = 'block';
-          
-          document.getElementById('v_date').innerText = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
-          document.getElementById('v_clientName').innerText = data.clientName || '-';
-          document.getElementById('decl_clientName').innerText = data.clientName || '-';
-          document.getElementById('v_patientName').innerText = data.patientName || '-';
-          document.getElementById('v_age').innerText = data.patientAge || '-';
-          document.getElementById('v_gender').innerText = data.gender || '-';
-          document.getElementById('v_phone').innerText = data.phone || '-';
-          document.getElementById('v_email').innerText = data.email || '-';
-          document.getElementById('v_address').innerText = data.address || '-';
-
-          initCanvas();
-        } else {
-          document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>" + data.message + "</span>";
-        }
-      })
-      .catch(err => {
-        document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>Server Connection Error: " + err + "</span>";
-      });
-  }
-
-  let canvas, ctx, isDrawing = false;
-  function initCanvas() {
-    canvas = document.getElementById('sigCanvas');
-    ctx = canvas.getContext('2d');
-    
-    function resize() {
-      let rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = 120;
-    }
-    resize();
-
-    canvas.addEventListener('mousedown', startDraw);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', stopDraw);
-
-    canvas.addEventListener('touchstart', (e) => { startDraw(e.touches[0]); e.preventDefault(); });
-    canvas.addEventListener('touchmove', (e) => { draw(e.touches[0]); e.preventDefault(); });
-    canvas.addEventListener('touchend', stopDraw);
-  }
-
-  function startDraw(e) {
-    isDrawing = true;
-    ctx.beginPath();
-    let rect = canvas.getBoundingClientRect();
-    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-  }
-
-  function draw(e) {
-    if (!isDrawing) return;
-    let rect = canvas.getBoundingClientRect();
-    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-    ctx.strokeStyle = '#000';
-    ctx.lineWidth = 2;
-    ctx.stroke();
-  }
-
-  function stopDraw() { isDrawing = false; }
-  function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
-
-  function submitForm() {
-    let blank = document.createElement('canvas');
-    blank.width = canvas.width;
-    blank.height = canvas.height;
-    if (canvas.toDataURL() === blank.toDataURL()) {
-      alert("Krupa karine pehla sahi karo!");
-      return;
-    }
-
-    document.getElementById('submitBtn').disabled = true;
-    document.getElementById('message').innerHTML = "<span style='color:blue;'>PDF Generate thai rahi chhe, rah juo...</span>";
-
-    let signatureData = canvas.toDataURL('image/png');
-
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      body: JSON.stringify({
-        token: token,
-        image: signatureData
-      })
-    })
-    .then(res => res.json())
-    .then(result => {
-      if (result.status === "success") {
-        document.getElementById('message').innerHTML = "<span style='color:green;'>Safaltapurvak submit thai gayu! PDF Drive ma save thai gayi chhe.</span>";
-        document.getElementById('formContent').style.display = 'none';
-        if (result.pdfUrl) {
-          setTimeout(() => { window.location.href = result.pdfUrl; }, 1200);
-        }
-      } else {
-        document.getElementById('submitBtn').disabled = false;
-        document.getElementById('message').innerHTML = "<span style='color:red;'>Error: " + result.message + "</span>";
-      }
-    })
-    .catch(err => {
-      document.getElementById('submitBtn').disabled = false;
-      document.getElementById('message').innerHTML = "<span style='color:red;'>Error: " + err + "</span>";
-    });
-  }
-</script>
-
-</body>
-</html>
