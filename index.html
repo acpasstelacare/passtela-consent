@@ -8,7 +8,6 @@
     @page { size: A4; margin: 0; }
     body { font-family: Arial, sans-serif; background: #555; margin: 0; padding: 20px 0; color: #000; }
     
-    /* Perfect Vertical A4 Styling with Exact Images */
     .page {
       width: 794px;
       min-height: 1123px;
@@ -22,8 +21,12 @@
       justify-content: space-between;
     }
 
-    /* Image Header & Footer Styles with top margin for header */
-    .header-img-container { width: 100%; text-align: center; margin-top: 240px; }
+    /* દરેક પેજ પર હેડરને નીચે લાવવા માટે અહીં padding-top અથવા margin-top સેટ કરેલ છે */
+    .header-img-container { 
+      width: 100%; 
+      text-align: center; 
+      padding-top: 30px; 
+    }
     .header-img-container img { width: 100%; height: auto; display: block; }
 
     .footer-img-container { width: 100%; position: relative; }
@@ -34,7 +37,6 @@
       flex-grow: 1;
     }
 
-    /* Typography & Spacing for First 4 Pages */
     .page-p1 { line-height: 1.8; }
     .page-p1 .details-list { font-size: 15.5px; line-height: 2.1; margin: 12px 0; padding-left: 20px; }
     .page-p1 .company-header { font-size: 14.5px; line-height: 1.7; }
@@ -50,7 +52,6 @@
     .page-p4 { line-height: 1.8; }
     .page-p4 .data-table { font-size: 14.5px; line-height: 1.6; }
 
-    /* Page 5 Standard Spacing */
     .page-p5 { line-height: 1.45; }
     .page-p5 .terms-text { font-size: 12px; line-height: 1.6; color: #111; padding-left: 16px; margin-top: 6px; }
     .page-p5 .terms-text li { margin-bottom: 6px; }
@@ -78,7 +79,6 @@
       background: #fff;
     }
 
-    /* Signature Area */
     .sig-box {
       margin-top: 10px;
       border: 1px dashed #0072bc;
@@ -105,9 +105,7 @@
 
   <!-- PAGE 1 OF 5 -->
   <div class="page page-p1">
-    <div class="header-img-container">
-      <img src="HEADER.png" alt="Passtelacare Header">
-    </div>
+    <div class="header-img-container"><img src="HEADER.png" alt="Header"></div>
     <div class="page-body">
       <div class="company-header">
         <h2>PASSTELA CARE PVT LTD</h2>
@@ -135,16 +133,14 @@
       </ul>
     </div>
     <div class="footer-img-container">
-      <img src="FOOTER.png" alt="Passtelacare Footer">
+      <img src="FOOTER.png" alt="Footer">
       <div class="page-number">1 OF 5</div>
     </div>
   </div>
 
   <!-- PAGE 2 OF 5 -->
   <div class="page page-p2">
-    <div class="header-img-container">
-      <img src="HEADER.png" alt="Passtelacare Header">
-    </div>
+    <div class="header-img-container"><img src="HEADER.png" alt="Header"></div>
     <div class="page-body">
       <div class="section-head">PART A: SERVICES CHARGES & SHIFTS<br><span style="font-size:13.5px; font-weight:normal;">(By Passtela Care Pvt Ltd – Without GST)</span></div>
       <table class="data-table">
@@ -157,140 +153,54 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td rowspan="4"><b>Nursing Care</b></td>
-            <td>24 Hours</td>
-            <td>24 Hours</td>
-            <td>₹2500 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td>DAY</td>
-            <td>9 AM TO 7 PM</td>
-            <td>₹1200 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td>NIGHT</td>
-            <td>8 PM TO 8 AM</td>
-            <td>₹1200 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td>PART TIME</td>
-            <td>1 TO 4 HRS</td>
-            <td>₹650 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td rowspan="4"><b>Caretaker<br>(Personal Care)</b></td>
-            <td>24 Hours</td>
-            <td>24 Hours</td>
-            <td>₹1500 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td>DAY</td>
-            <td>8 AM TO 8 PM</td>
-            <td>₹800 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td>NIGHT</td>
-            <td>8 PM TO 8 AM</td>
-            <td>₹800 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td>PART TIME</td>
-            <td>1 HRS</td>
-            <td>₹400 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td rowspan="4"><b>Baby Caretaker</b></td>
-            <td>24 Hours</td>
-            <td>24 Hours</td>
-            <td>₹1900 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td>DAY</td>
-            <td>9 AM TO 7 PM</td>
-            <td>₹1000 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td>NIGHT</td>
-            <td>8 PM TO 8 AM</td>
-            <td>₹1000 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td>PART TIME</td>
-            <td>1 TO 4 HRS</td>
-            <td>₹500 /- PER DAY</td>
-          </tr>
-          <tr>
-            <td><b>Physiotherapy</b></td>
-            <td>Per Session</td>
-            <td>30-60 Mins per session</td>
-            <td>₹750 /- PER DAY</td>
-          </tr>
+          <tr><td rowspan="4"><b>Nursing Care</b></td><td>24 Hours</td><td>24 Hours</td><td>₹2500 /- PER DAY</td></tr>
+          <tr><td>DAY</td><td>9 AM TO 7 PM</td><td>₹1200 /- PER DAY</td></tr>
+          <tr><td>NIGHT</td><td>8 PM TO 8 AM</td><td>₹1200 /- PER DAY</td></tr>
+          <tr><td>PART TIME</td><td>1 TO 4 HRS</td><td>₹650 /- PER DAY</td></tr>
+          <tr><td rowspan="4"><b>Caretaker<br>(Personal Care)</b></td><td>24 Hours</td><td>24 Hours</td><td>₹1500 /- PER DAY</td></tr>
+          <tr><td>DAY</td><td>8 AM TO 8 PM</td><td>₹800 /- PER DAY</td></tr>
+          <tr><td>NIGHT</td><td>8 PM TO 8 AM</td><td>₹800 /- PER DAY</td></tr>
+          <tr><td>PART TIME</td><td>1 HRS</td><td>₹400 /- PER DAY</td></tr>
+          <tr><td rowspan="4"><b>Baby Caretaker</b></td><td>24 Hours</td><td>24 Hours</td><td>₹1900 /- PER DAY</td></tr>
+          <tr><td>DAY</td><td>9 AM TO 7 PM</td><td>₹1000 /- PER DAY</td></tr>
+          <tr><td>NIGHT</td><td>8 PM TO 8 AM</td><td>₹1000 /- PER DAY</td></tr>
+          <tr><td>PART TIME</td><td>1 TO 4 HRS</td><td>₹500 /- PER DAY</td></tr>
+          <tr><td><b>Physiotherapy</b></td><td>Per Session</td><td>30-60 Mins per session</td><td>₹750 /- PER DAY</td></tr>
         </tbody>
       </table>
-      <div style="font-style:italic; font-size:14px; margin-top:12px; text-align:center;">We propose the following professional home healthcare services and shift options:</div>
     </div>
-    <div class="footer-img-container">
-      <img src="FOOTER.png" alt="Passtelacare Footer">
-      <div class="page-number">2 OF 5</div>
-    </div>
+    <div class="footer-img-container"><img src="FOOTER.png" alt="Footer"><div class="page-number">2 OF 5</div></div>
   </div>
 
   <!-- PAGE 3 OF 5 -->
   <div class="page page-p3">
-    <div class="header-img-container">
-      <img src="HEADER.png" alt="Passtelacare Header">
-    </div>
+    <div class="header-img-container"><img src="HEADER.png" alt="Header"></div>
     <div class="page-body">
       <div class="section-head">PART B: DETAILED SCOPE OF WORK (Service Descriptions)</div>
       <div class="section-subhead">The responsibilities and tasks included under each service are defined below:</div>
       <table class="data-table">
         <thead>
-          <tr>
-            <th width="30%">Service Category</th>
-            <th width="70%">Detailed Scope of Work & Description</th>
-          </tr>
+          <tr><th width="30%">Service Category</th><th width="70%">Detailed Scope of Work & Description</th></tr>
         </thead>
         <tbody>
-          <tr>
-            <td><b>Nursing Care</b></td>
-            <td>Clinical Nursing Care, Injections, IV Drip, Medication, Vital Monitoring, Tube Feeding, Catheter Care, Bedsore Dressing, Post-Op Care.</td>
-          </tr>
-          <tr>
-            <td><b>Caretaker<br>(Personal Care)</b></td>
-            <td>BATH - SPONGING, BED SHEET CHANGE, BEDSORE DRESSING, CHANGE POSITION, CLOTH CHANGE, CLOTH WASH, DIAPER CHANGING, EMPTY COLOSTOMY BAG, EMPTY URINE BAG, GENTLE MASSAGE (1 TIME IN A DAY IF PRESCRIBED), GIVE BED PAN, GIVE MEDICINE, MINOR DRESSING / WOUND CARE, EXERCISES (IF PRESCRIBED), LIFTING ASSISTANCE, PATIENTS ROOM CLEANING, RYLES TUBE FEEDING, STOOL CLEANING, SUPPORT IN WALKING, WHEELCHAIR TRANSFER.</td>
-          </tr>
-          <tr>
-            <td><b>Baby Caretaker</b></td>
-            <td>BABY BATH, BABY MASSAGE, BABY- MUMMY MASSAGE, DIAPER CHANGE, WASH BABY CLOTH.</td>
-          </tr>
-          <tr>
-            <td><b>Physiotherapy</b></td>
-            <td>As prescribed by the Doctors.</td>
-          </tr>
+          <tr><td><b>Nursing Care</b></td><td>Clinical Nursing Care, Injections, IV Drip, Medication, Vital Monitoring, Tube Feeding, Catheter Care, Bedsore Dressing, Post-Op Care.</td></tr>
+          <tr><td><b>Caretaker<br>(Personal Care)</b></td><td>BATH - SPONGING, BED SHEET CHANGE, BEDSORE DRESSING, CHANGE POSITION, CLOTH CHANGE, CLOTH WASH, DIAPER CHANGING, EMPTY COLOSTOMY BAG, EMPTY URINE BAG, GENTLE MASSAGE, GIVE BED PAN, GIVE MEDICINE, MINOR DRESSING, EXERCISES, LIFTING ASSISTANCE, PATIENTS ROOM CLEANING, RYLES TUBE FEEDING, STOOL CLEANING, SUPPORT IN WALKING, WHEELCHAIR TRANSFER.</td></tr>
+          <tr><td><b>Baby Caretaker</b></td><td>BABY BATH, BABY MASSAGE, BABY- MUMMY MASSAGE, DIAPER CHANGE, WASH BABY CLOTH.</td></tr>
+          <tr><td><b>Physiotherapy</b></td><td>As prescribed by the Doctors.</td></tr>
         </tbody>
       </table>
     </div>
-    <div class="footer-img-container">
-      <img src="FOOTER.png" alt="Passtelacare Footer">
-      <div class="page-number">3 OF 5</div>
-    </div>
+    <div class="footer-img-container"><img src="FOOTER.png" alt="Footer"><div class="page-number">3 OF 5</div></div>
   </div>
 
   <!-- PAGE 4 OF 5 -->
   <div class="page page-p4">
-    <div class="header-img-container">
-      <img src="HEADER.png" alt="Passtelacare Header">
-    </div>
+    <div class="header-img-container"><img src="HEADER.png" alt="Header"></div>
     <div class="page-body">
       <div class="section-head">PART C: RENTAL MEDICAL EQUIPMENT<br><span style="font-size:13.5px; font-weight:normal;">(By Passtela Surgical Hub – With GST Applicable)</span></div>
       <table class="data-table">
         <thead>
-          <tr>
-            <th>Medical Equipment</th>
-            <th>Frequency</th>
-            <th>Total Cost (Per day)</th>
-          </tr>
+          <tr><th>Medical Equipment</th><th>Frequency</th><th>Total Cost (Per day)</th></tr>
         </thead>
         <tbody id="eqpTbody">
           <tr><td>3 FUNCTION BED</td><td>Per Day</td><td>₹100 /-</td></tr>
@@ -315,17 +225,12 @@
         <b>In words :</b> RUPEES FIVE THOUSAND ONLY
       </div>
     </div>
-    <div class="footer-img-container">
-      <img src="FOOTER.png" alt="Passtelacare Footer">
-      <div class="page-number">4 OF 5</div>
-    </div>
+    <div class="footer-img-container"><img src="FOOTER.png" alt="Footer"><div class="page-number">4 OF 5</div></div>
   </div>
 
   <!-- PAGE 5 OF 5 -->
   <div class="page page-p5">
-    <div class="header-img-container">
-      <img src="HEADER.png" alt="Passtelacare Header">
-    </div>
+    <div class="header-img-container"><img src="HEADER.png" alt="Header"></div>
     <div class="page-body">
       <div style="font-weight:bold; font-size:13.5px; margin:8px 0 4px 0;">Terms and Conditions</div>
       <ol class="terms-text">
@@ -354,10 +259,7 @@
         </div>
       </div>
     </div>
-    <div class="footer-img-container">
-      <img src="FOOTER.png" alt="Passtelacare Footer">
-      <div class="page-number">5 OF 5</div>
-    </div>
+    <div class="footer-img-container"><img src="FOOTER.png" alt="Footer"><div class="page-number">5 OF 5</div></div>
   </div>
 
 </div>
