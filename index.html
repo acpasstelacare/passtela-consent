@@ -6,16 +6,15 @@
   <title>Passtelacare - Patient Consent Form</title>
   <style>
     @page { size: A4; margin: 0; }
-    body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #e0e0e0; margin: 0; padding: 20px 0; color: #000; }
+    body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #e0e0e0; margin: 0; padding: 15px 0; color: #000; }
     
-    /* Individual Page Layout */
+    /* Dynamic Compact Page Layout */
     .page {
       width: 794px;
-      min-height: 1123px;
-      margin: 0 auto 30px auto;
+      margin: 0 auto 20px auto;
       background: #fff;
       position: relative;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
       border: 1px solid #ccc;
       box-sizing: border-box;
       display: flex;
@@ -24,47 +23,46 @@
     }
 
     .page-body {
-      padding: 30px 45px 20px 45px;
-      flex-grow: 1;
+      padding: 25px 35px 15px 35px;
     }
 
     /* Top Logo & Header */
-    .brand-logo { text-align: center; margin-bottom: 5px; }
-    .brand-logo-text { color: #689f38; font-size: 24px; font-weight: bold; font-family: sans-serif; margin: 0; }
-    .brand-logo-sub { font-size: 9px; color: #689f38; font-weight: bold; letter-spacing: 3px; }
+    .brand-logo { text-align: center; margin-bottom: 4px; }
+    .brand-logo-text { color: #689f38; font-size: 22px; font-weight: bold; font-family: sans-serif; margin: 0; }
+    .brand-logo-sub { font-size: 8px; color: #689f38; font-weight: bold; letter-spacing: 2px; }
     
-    .company-header { text-align: center; font-size: 11px; line-height: 1.35; color: #111; }
-    .company-header h2 { font-size: 15px; margin: 2px 0; color: #000; font-weight: bold; }
-    .company-header h3 { font-size: 13px; margin: 8px 0 2px 0; color: #000; font-weight: bold; }
+    .company-header { text-align: center; font-size: 10.5px; line-height: 1.3; color: #111; }
+    .company-header h2 { font-size: 14px; margin: 2px 0; color: #000; font-weight: bold; }
+    .company-header h3 { font-size: 12px; margin: 6px 0 2px 0; color: #000; font-weight: bold; }
     .company-header a { color: #0056b3; text-decoration: underline; }
 
-    .doc-title { text-align: center; font-size: 15px; font-weight: bold; text-decoration: underline; margin: 25px 0 15px 0; letter-spacing: 0.5px; }
+    .doc-title { text-align: center; font-size: 14px; font-weight: bold; text-decoration: underline; margin: 15px 0 10px 0; letter-spacing: 0.5px; }
 
     /* Tables & Formatting */
-    .section-head { font-weight: bold; font-size: 12px; margin: 15px 0 10px 0; text-transform: uppercase; text-align: center; }
-    .section-subhead { font-size: 11px; text-align: center; font-style: italic; margin-bottom: 15px; }
+    .section-head { font-weight: bold; font-size: 11.5px; margin: 10px 0 6px 0; text-transform: uppercase; text-align: center; }
+    .section-subhead { font-size: 10.5px; text-align: center; font-style: italic; margin-bottom: 10px; }
 
-    .data-table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 11px; }
-    .data-table th, .data-table td { border: 1px solid #777; padding: 7px 10px; text-align: left; }
+    .data-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 10.5px; }
+    .data-table th, .data-table td { border: 1px solid #777; padding: 5px 8px; text-align: left; }
     .data-table th { background: #f5f5f5; font-weight: bold; text-align: center; }
 
-    .details-list { font-size: 12px; line-height: 1.8; margin: 10px 0; padding-left: 20px; }
+    .details-list { font-size: 11.5px; line-height: 1.6; margin: 6px 0; padding-left: 18px; }
 
-    .terms-text { font-size: 10.5px; line-height: 1.5; color: #111; padding-left: 18px; margin-top: 10px; }
-    .terms-text li { margin-bottom: 6px; }
+    .terms-text { font-size: 10px; line-height: 1.4; color: #111; padding-left: 16px; margin-top: 6px; }
+    .terms-text li { margin-bottom: 4px; }
 
     /* Footer Design */
-    .footer-container { width: 100%; margin-top: auto; }
+    .footer-container { width: 100%; margin-top: 15px; }
     .footer-bar {
       display: flex;
       width: 100%;
       background: #0072bc;
       color: #fff;
-      font-size: 10px;
+      font-size: 9.5px;
     }
     .footer-left {
       flex: 1.8;
-      padding: 8px 15px;
+      padding: 6px 12px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -72,38 +70,38 @@
     .footer-right {
       flex: 1.2;
       background: #689f38;
-      padding: 8px 15px;
+      padding: 6px 12px;
       color: #fff;
-      font-size: 9px;
+      font-size: 8.5px;
       line-height: 1.2;
       text-align: right;
       clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%);
     }
     .page-number {
       text-align: right;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: bold;
-      padding: 5px 20px 10px 0;
+      padding: 4px 15px 6px 0;
       color: #000;
     }
 
     /* Signature Area */
     .sig-box {
-      margin-top: 20px;
+      margin-top: 12px;
       border: 1px dashed #0072bc;
-      padding: 15px;
+      padding: 10px;
       background: #fdfdfd;
       border-radius: 4px;
     }
-    canvas { display: block; width: 100%; height: 140px; background: #fff; border: 1px solid #bbb; touch-action: none; cursor: crosshair; }
+    canvas { display: block; width: 100%; height: 120px; background: #fff; border: 1px solid #bbb; touch-action: none; cursor: crosshair; }
     
-    .btn-group { display: flex; gap: 10px; margin-top: 10px; }
-    button { flex: 1; padding: 12px; border: none; font-size: 14px; font-weight: bold; cursor: pointer; border-radius: 3px; }
+    .btn-group { display: flex; gap: 8px; margin-top: 8px; }
+    button { flex: 1; padding: 10px; border: none; font-size: 13px; font-weight: bold; cursor: pointer; border-radius: 3px; }
     .btn-clear { background: #d9534f; color: #fff; }
     .btn-submit { background: #5cb85c; color: #fff; }
 
-    #loadingDiv { text-align: center; padding: 100px 20px; font-size: 18px; font-weight: bold; color: #0072bc; }
-    #message { text-align: center; font-weight: bold; margin-top: 15px; font-size: 14px; }
+    #loadingDiv { text-align: center; padding: 80px 20px; font-size: 16px; font-weight: bold; color: #0072bc; }
+    #message { text-align: center; font-weight: bold; margin-top: 10px; font-size: 13px; }
   </style>
 </head>
 <body>
@@ -135,8 +133,8 @@
         <div>GST No: 24CYKPK3744B1ZN, PAN No: CYKPK37448</div>
       </div>
       <div class="doc-title">CONSENT CUM QUOTATION FOR SERVICES</div>
-      <div style="font-size:12px; margin-bottom:15px;"><b>Date:</b> <span id="v_date">01/Jan/1970</span></div>
-      <div style="font-weight:bold; font-size:12px;">Client & Patient Details</div>
+      <div style="font-size:11px; margin-bottom:10px;"><b>Date:</b> <span id="v_date">01/Jan/1970</span></div>
+      <div style="font-weight:bold; font-size:11.5px;">Client & Patient Details</div>
       <ul class="details-list">
         <li><b>Client / Relative Name:</b> <span id="v_clientName">-</span></li>
         <li><b>Patient Name:</b> <span id="v_patientName">-</span> (Age: <span id="v_age">-</span> Yrs | Gender: <span id="v_gender">-</span>)</li>
@@ -166,7 +164,7 @@
         <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
         <div class="brand-logo-sub">BETTER FOR YOU</div>
       </div>
-      <div class="section-head">PART A: SERVICES CHARGES & SHIFTS<br><span style="font-size:11px; font-weight:normal;">(By Passtela Care Pvt Ltd – Without GST)</span></div>
+      <div class="section-head">PART A: SERVICES CHARGES & SHIFTS<br><span style="font-size:10px; font-weight:normal;">(By Passtela Care Pvt Ltd – Without GST)</span></div>
       <table class="data-table">
         <thead>
           <tr>
@@ -248,7 +246,7 @@
           </tr>
         </tbody>
       </table>
-      <div style="font-style:italic; font-size:11px; margin-top:15px; text-align:center;">We propose the following professional home healthcare services and shift options:</div>
+      <div style="font-style:italic; font-size:10.5px; margin-top:10px; text-align:center;">We propose the following professional home healthcare services and shift options:</div>
     </div>
     <div class="footer-container">
       <div class="footer-bar">
@@ -284,19 +282,19 @@
         <tbody>
           <tr>
             <td><b>Nursing Care</b></td>
-            <td style="font-size:10px; line-height:1.4;">Clinical Nursing Care, Injections, IV Drip, Medication, Vital Monitoring, Tube Feeding, Catheter Care, Bedsore Dressing, Post-Op Care.</td>
+            <td style="font-size:9.5px; line-height:1.35;">Clinical Nursing Care, Injections, IV Drip, Medication, Vital Monitoring, Tube Feeding, Catheter Care, Bedsore Dressing, Post-Op Care.</td>
           </tr>
           <tr>
             <td><b>Caretaker<br>(Personal Care)</b></td>
-            <td style="font-size:10px; line-height:1.4;">BATH - SPONGING, BED SHEET CHANGE, BEDSORE DRESSING, CHANGE POSITION, CLOTH CHANGE, CLOTH WASH, DIAPER CHANGING, EMPTY COLOSTOMY BAG, EMPTY URINE BAG, GENTLE MASSAGE (1 TIME IN A DAY IF PRESCRIBED), GIVE BED PAN, GIVE MEDICINE, MINOR DRESSING / WOUND CARE, EXERCISES (IF PRESCRIBED), LIFTING ASSISTANCE, PATIENTS ROOM CLEANING, RYLES TUBE FEEDING, STOOL CLEANING, SUPPORT IN WALKING, WHEELCHAIR TRANSFER.</td>
+            <td style="font-size:9.5px; line-height:1.35;">BATH - SPONGING, BED SHEET CHANGE, BEDSORE DRESSING, CHANGE POSITION, CLOTH CHANGE, CLOTH WASH, DIAPER CHANGING, EMPTY COLOSTOMY BAG, EMPTY URINE BAG, GENTLE MASSAGE (1 TIME IN A DAY IF PRESCRIBED), GIVE BED PAN, GIVE MEDICINE, MINOR DRESSING / WOUND CARE, EXERCISES (IF PRESCRIBED), LIFTING ASSISTANCE, PATIENTS ROOM CLEANING, RYLES TUBE FEEDING, STOOL CLEANING, SUPPORT IN WALKING, WHEELCHAIR TRANSFER.</td>
           </tr>
           <tr>
             <td><b>Baby Caretaker</b></td>
-            <td style="font-size:10px; line-height:1.4;">BABY BATH, BABY MASSAGE, BABY- MUMMY MASSAGE, DIAPER CHANGE, WASH BABY CLOTH.</td>
+            <td style="font-size:9.5px; line-height:1.35;">BABY BATH, BABY MASSAGE, BABY- MUMMY MASSAGE, DIAPER CHANGE, WASH BABY CLOTH.</td>
           </tr>
           <tr>
             <td><b>Physiotherapy</b></td>
-            <td style="font-size:10px; line-height:1.4;">As prescribed by the Doctors.</td>
+            <td style="font-size:9.5px; line-height:1.35;">As prescribed by the Doctors.</td>
           </tr>
         </tbody>
       </table>
@@ -323,7 +321,7 @@
         <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
         <div class="brand-logo-sub">BETTER FOR YOU</div>
       </div>
-      <div class="section-head">PART C: RENTAL MEDICAL EQUIPMENT<br><span style="font-size:11px; font-weight:normal;">(By Passtela Surgical Hub – With GST Applicable)</span></div>
+      <div class="section-head">PART C: RENTAL MEDICAL EQUIPMENT<br><span style="font-size:10px; font-weight:normal;">(By Passtela Surgical Hub – With GST Applicable)</span></div>
       <table class="data-table">
         <thead>
           <tr>
@@ -347,9 +345,9 @@
           <tr><td>JKL</td><td>Per Day</td><td>₹1200 /-</td></tr>
         </tbody>
       </table>
-      <div style="font-style:italic; font-size:11px; margin-top:10px;">(Note: GST will be charged extra as per government norms on equipment rental/purchase from Passtela Surgical Hub).</div>
+      <div style="font-style:italic; font-size:10px; margin-top:8px;">(Note: GST will be charged extra as per government norms on equipment rental/purchase from Passtela Surgical Hub).</div>
       <br>
-      <div style="font-size:12px;">
+      <div style="font-size:11px;">
         <b>DEPOSITE :</b><br>
         <b>Applicable deposit for medical service & medical equipment :</b> ₹5000<br>
         <b>In words :</b> RUPEES FIVE THOUSAND ONLY
@@ -377,7 +375,7 @@
         <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
         <div class="brand-logo-sub">BETTER FOR YOU</div>
       </div>
-      <div style="font-weight:bold; font-size:13px; margin:15px 0 10px 0;">Terms and Conditions</div>
+      <div style="font-weight:bold; font-size:12px; margin:10px 0 6px 0;">Terms and Conditions</div>
       <ol class="terms-text">
         <li><b>Billing Structure:</b> Services rendered by Passtela Care Pvt Ltd will be billed <b>without GST</b>, whereas medical equipment provided by Passtela Surgical Hub will be billed <b>with GST</b>.</li>
         <li><b>Payment Terms:</b> A 15-day advance payment is required to start the service. Regular payments must be made within 3 days of receiving the invoice; otherwise, services will be terminated without notice. An extra 1% of the invoice amount shall be levied for non-payment within 3 days.</li>
@@ -389,14 +387,14 @@
         <li><b>Rate Revision / Modification:</b> Passtelacare Pvt Ltd and Passtelacare Surgical Hub reserve the right to revise or modify service and rental rates at any time. In the event of any rate changes, prior written or digital notice of 5 to 10 days will be provided to the client.</li>
       </ol>
 
-      <div style="font-weight:bold; font-size:12px; margin-top:15px;">Approval & Declaration</div>
-      <div style="font-size:11px; margin-top:5px; line-height:1.5;">
+      <div style="font-weight:bold; font-size:11.5px; margin-top:10px;">Approval & Declaration</div>
+      <div style="font-size:10.5px; margin-top:4px; line-height:1.4;">
         I, <b id="decl_clientName">ARYA DIPAKKUMAR RAVAL</b>, have carefully read and understood all terms and conditions mentioned above. By signing this, I agree to legally abide by these rules and avail of the services from Passtela Care Pvt Ltd and Passtela Surgical Hub for my relative.
       </div>
 
       <!-- Signature Area -->
       <div class="sig-box">
-        <div style="font-weight:bold; color:#0072bc; margin-bottom:8px; font-size:13px;">સહી કરો (Client / Relative Signature):</div>
+        <div style="font-weight:bold; color:#0072bc; margin-bottom:6px; font-size:12px;">સહી કરો (Client / Relative Signature):</div>
         <canvas id="sigCanvas"></canvas>
         <div class="btn-group">
           <button type="button" class="btn-clear" onclick="clearCanvas()">ફરી સહી કરો (Clear)</button>
@@ -473,7 +471,7 @@
     function resize() {
       let rect = canvas.getBoundingClientRect();
       canvas.width = rect.width;
-      canvas.height = 140;
+      canvas.height = 120;
     }
     resize();
 
