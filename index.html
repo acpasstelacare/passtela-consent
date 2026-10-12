@@ -1,178 +1,285 @@
 <!DOCTYPE html>
 <html lang="gu">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Passtelacare - Patient Consent Form</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 10px; color: #333; }
-        .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        h2 { text-align: center; color: #0056b3; font-size: 20px; margin-bottom: 15px; }
-        .loading { text-align: center; font-size: 16px; color: #666; padding: 20px; }
-        .details-box { background: #eef2f7; padding: 12px; border-radius: 6px; margin-bottom: 15px; font-size: 14px; line-height: 1.6; }
-        .details-box p { margin: 4px 0; }
-        .sig-container { border: 2px dashed #ccc; border-radius: 6px; background: #fff; position: relative; margin-bottom: 15px; overflow: hidden; }
-        canvas { display: block; width: 100%; height: 180px; touch-action: none; }
-        .btn-group { display: flex; gap: 10px; }
-        button { flex: 1; padding: 12px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; }
-        .btn-clear { background: #dc3545; color: #fff; }
-        .btn-submit { background: #28a745; color: #fff; }
-        button:disabled { background: #ccc; cursor: not-allowed; }
-        #message { margin-top: 15px; text-align: center; font-weight: bold; font-size: 14px; }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Passtelacare - Patient Consent Form</title>
+  <style>
+    body { font-family: Arial, sans-serif; background: #eef2f7; margin: 0; padding: 15px; color: #222; }
+    .doc-page { max-width: 800px; margin: auto; background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.15); border-top: 6px solid #0056b3; }
+    
+    /* Header Styling */
+    .header { text-align: center; border-bottom: 2px solid #0056b3; padding-bottom: 10px; margin-bottom: 20px; }
+    .header h1 { color: #0056b3; font-size: 22px; margin: 0; text-transform: uppercase; }
+    .header h3 { color: #28a745; font-size: 14px; margin: 5px 0 0 0; }
+    .header p { font-size: 11px; color: #555; margin: 3px 0; }
+    
+    .form-title { text-align: center; font-size: 18px; font-weight: bold; text-decoration: underline; margin: 20px 0; color: #111; }
+    
+    /* Section & Table Styling */
+    .section-title { font-weight: bold; background: #f0f4f8; padding: 6px 10px; margin-top: 15px; font-size: 14px; border-left: 4px solid #0056b3; }
+    .info-table, .data-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+    .info-table td { padding: 5px 8px; vertical-align: top; }
+    
+    .data-table th, .data-table td { border: 1px solid #ccc; padding: 6px 8px; text-align: left; }
+    .data-table th { background: #eef2f7; color: #0056b3; font-size: 12px; }
+    
+    /* Terms & Conditions */
+    .terms { font-size: 11px; color: #444; line-height: 1.5; margin-top: 15px; padding-left: 15px; }
+    
+    /* Canvas / Signature Area */
+    .sig-area { margin-top: 25px; background: #fdfdfd; padding: 15px; border: 1px dashed #0056b3; border-radius: 6px; }
+    canvas { display: block; width: 100%; height: 160px; background: #fff; border: 1px solid #bbb; border-radius: 4px; touch-action: none; cursor: crosshair; }
+    
+    .btn-group { display: flex; gap: 10px; margin-top: 12px; }
+    button { flex: 1; padding: 12px; border: none; border-radius: 4px; font-size: 15px; font-weight: bold; cursor: pointer; }
+    .btn-clear { background: #dc3545; color: #fff; }
+    .btn-submit { background: #28a745; color: #fff; }
+    button:disabled { background: #aaa; cursor: not-allowed; }
+    
+    #loadingDiv { text-align: center; padding: 50px; font-size: 18px; font-weight: bold; color: #0056b3; }
+    #message { margin-top: 15px; text-align: center; font-weight: bold; font-size: 14px; }
+  </style>
 </head>
 <body>
 
-<div class="container">
-    <h2>PATIENT CONSENT FORM</h2>
-    
-    <div id="loadingDiv" class="loading">ડેટા લોડ થઈ રહ્યો છે, રાહ જુઓ...</div>
-    
-    <div id="formContent" style="display:none;">
-        <div class="details-box" id="detailsBox"></div>
+<div class="doc-page">
+  
+  <div id="loadingDiv">Consent Form Load Thai Rahyu Chhe, Rah Juo...</div>
 
-        <p style="font-weight: bold; margin-bottom: 5px;">સહી કરો (Signature):</p>
-        <div class="sig-container">
-            <canvas id="sigCanvas"></canvas>
-        </div>
-
-        <div class="btn-group">
-            <button type="button" class="btn-clear" onclick="clearCanvas()">ફરી સહી કરો</button>
-            <button type="button" id="submitBtn" class="btn-submit" onclick="submitForm()">સબમિટ કરો (Submit)</button>
-        </div>
+  <div id="formContent" style="display:none;">
+    
+    <!-- Letterhead Header -->
+    <div class="header">
+      <h1>PASSTELA CARE PVT LTD</h1>
+      <h3>PASSTELA SURGICAL HUB</h3>
+      <p>Corporate Office: 402-Milestone Drive In Rd, Thaltej, Ahmedabad - 380054</p>
+      <p>Contact: +91 90999 93666 / 7 / 8 / 9 | Email: info@passtelacare.com</p>
     </div>
 
-    <div id="message"></div>
+    <div class="form-title">CONSENT CUM QUOTATION FOR SERVICES</div>
+
+    <!-- Client & Patient Details -->
+    <div class="section-title">1. CLIENT & PATIENT DETAILS</div>
+    <table class="info-table">
+      <tr>
+        <td width="50%"><b>Inquiry No:</b> <span id="v_inquiryNo">-</span></td>
+        <td width="50%"><b>Date:</b> <span id="v_date">-</span></td>
+      </tr>
+      <tr>
+        <td><b>Client / Relative Name:</b> <span id="v_clientName">-</span></td>
+        <td><b>Relation:</b> <span id="v_relation">-</span></td>
+      </tr>
+      <tr>
+        <td><b>Patient Name:</b> <span id="v_patientName">-</span></td>
+        <td><b>Age / Gender:</b> <span id="v_ageGender">-</span></td>
+      </tr>
+      <tr>
+        <td><b>Contact Number:</b> <span id="v_phone">-</span></td>
+        <td><b>Email:</b> <span id="v_email">-</span></td>
+      </tr>
+      <tr>
+        <td colspan="2"><b>Patient Address:</b> <span id="v_address">-</span></td>
+      </tr>
+    </table>
+
+    <!-- Rates Section -->
+    <div class="section-title">2. SERVICE CHARGES & SCOPE OF WORK</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Service Type</th>
+          <th>24 Hr Rate</th>
+          <th>Day Shift</th>
+          <th>Night Shift</th>
+          <th>Part Time</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><b>Nursing Care</b></td>
+          <td id="v_n24">₹0</td>
+          <td id="v_nD">₹0</td>
+          <td id="v_nN">₹0</td>
+          <td id="v_nPt">₹0</td>
+        </tr>
+        <tr>
+          <td><b>Caregiver / Attendant</b></td>
+          <td id="v_ct24">₹0</td>
+          <td id="v_ctD">₹0</td>
+          <td id="v_ctN">₹0</td>
+          <td id="v_ctPt">₹0</td>
+        </tr>
+        <tr>
+          <td><b>Baby Care</b></td>
+          <td id="v_b24">₹0</td>
+          <td id="v_bD">₹0</td>
+          <td id="v_bN">₹0</td>
+          <td id="v_bPt">₹0</td>
+        </tr>
+        <tr>
+          <td><b>Physiotherapy Rate</b></td>
+          <td colspan="4" id="v_physio">₹0</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Deposit Section -->
+    <div class="section-title">3. APPLICABLE DEPOSIT</div>
+    <p style="font-size: 13px; margin: 8px 0 0 10px;">
+      <b>Applicable Deposit Amount:</b> ₹<span id="v_deposit">0</span>/-<br>
+      <b>In Words:</b> <span id="v_depositWords">ZERO</span>
+    </p>
+
+    <!-- Terms and Conditions -->
+    <div class="section-title">4. TERMS AND CONDITIONS</div>
+    <ol class="terms">
+      <li>Billing Structure: Services rendered by Passtela Care Pvt Ltd will be billed without GST, whereas equipment will be billed with GST.</li>
+      <li>Payment Terms: Advance payment is required to start service. Regular payments must be made as per schedule.</li>
+      <li>Staff Direct Hiring Restriction: Client cannot directly hire Passtela staff without prior approval.</li>
+      <li>All disputes are subject to Ahmedabad jurisdiction.</li>
+    </ol>
+
+    <!-- Signature Box Area -->
+    <div class="sig-area">
+      <p style="font-weight: bold; margin: 0 0 8px 0; color: #0056b3;">સહી કરો (Client Signature):</p>
+      <canvas id="sigCanvas"></canvas>
+      <div class="btn-group">
+        <button type="button" class="btn-clear" onclick="clearCanvas()">ફરી સહી કરો (Clear)</button>
+        <button type="button" id="submitBtn" class="btn-submit" onclick="submitForm()">સબમિટ કરો (Submit Consent)</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div id="message"></div>
+
 </div>
 
 <script>
-    // ⚠️ અહીં તમારું Google Apps Script નું Web App URL સેટ કરેલું છે
-   const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6My529gHzFHh1JFuszfJif5TW5L5EiHgCetQlrUxmJ_Ok_KKDxjAgMSgR3voTRHvnQg/exec"; 
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6My529gHzFHh1JFuszfJif5TW5L5EiHgCetQlrUxmJ_Ok_KKDxjAgMSgR3voTRHvnQg/exec"; 
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const token = urlParams.get('id'); // URL માંથી Secure Token મેળવશે (?id=TOKEN)
-    let fetchedData = {};
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get('id');
+  let fetchedData = {};
 
-    window.onload = function() {
-        if (!token) {
-            document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>ભૂલ: અમાન્ય અથવા ખૂટતી સિક્યોર લિંક! (Token missing in URL)</span>";
-            return;
+  window.onload = function() {
+    if (!token) {
+      document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>Error: Secure Link Is Invalid Or Missing!</span>";
+      return;
+    }
+    fetchData();
+  };
+
+  function fetchData() {
+    fetch(SCRIPT_URL + "?id=" + token)
+      .then(res => res.json())
+      .then(data => {
+        if (data.status === "success") {
+          fetchedData = data;
+          document.getElementById('loadingDiv').style.display = 'none';
+          document.getElementById('formContent').style.display = 'block';
+          
+          // Populate details
+          document.getElementById('v_inquiryNo').innerText = data.inquiryNo || '-';
+          document.getElementById('v_date').innerText = new Date().toLocaleDateString();
+          document.getElementById('v_clientName').innerText = data.clientName || '-';
+          document.getElementById('v_relation').innerText = data.relation || '-';
+          document.getElementById('v_patientName').innerText = data.patientName || '-';
+          document.getElementById('v_ageGender').innerText = (data.patientAge || '-') + ' / ' + (data.gender || '-');
+          document.getElementById('v_phone').innerText = data.phone || '-';
+          document.getElementById('v_email').innerText = data.email || '-';
+          document.getElementById('v_address').innerText = data.address || '-';
+
+          initCanvas();
+        } else {
+          document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>" + data.message + "</span>";
         }
-        fetchData();
-    };
+      })
+      .catch(err => {
+        document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>Server Connection Error: " + err + "</span>";
+      });
+  }
 
-    function fetchData() {
-        fetch(SCRIPT_URL + "?id=" + token)
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === "success") {
-                    fetchedData = data;
-                    document.getElementById('loadingDiv').style.display = 'none';
-                    document.getElementById('formContent').style.display = 'block';
-                    
-                    document.getElementById('detailsBox').innerHTML = `
-                        <p><strong>ઇન્ક્વાયરી નંબર:</strong> ${data.inquiryNo || '-'}</p>
-                        <p><strong>ક્લાયન્ટનું નામ:</strong> ${data.clientName || '-'}</p>
-                        <p><strong>દર્દીનું નામ:</strong> ${data.patientName || '-'}</p>
-                        <p><strong>ઉંમર / જાતિ:</strong> ${data.patientAge || '-'} / ${data.gender || '-'}</p>
-                        <p><strong>મોબાઈલ નંબર:</strong> ${data.phone || '-'}</p>
-                        <p><strong>સરનામું:</strong> ${data.address || '-'}</p>
-                    `;
-                    initCanvas();
-                } else {
-                    document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>" + data.message + "</span>";
-                }
-            })
-            .catch(err => {
-                document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>સર્વર કનેક્શન એરર: " + err + "</span>";
-            });
+  let canvas, ctx, isDrawing = false;
+  function initCanvas() {
+    canvas = document.getElementById('sigCanvas');
+    ctx = canvas.getContext('2d');
+    
+    function resize() {
+      let rect = canvas.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = 160;
+    }
+    resize();
+
+    canvas.addEventListener('mousedown', startDraw);
+    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mouseup', stopDraw);
+
+    canvas.addEventListener('touchstart', (e) => { startDraw(e.touches[0]); e.preventDefault(); });
+    canvas.addEventListener('touchmove', (e) => { draw(e.touches[0]); e.preventDefault(); });
+    canvas.addEventListener('touchend', stopDraw);
+  }
+
+  function startDraw(e) {
+    isDrawing = true;
+    ctx.beginPath();
+    let rect = canvas.getBoundingClientRect();
+    ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+  }
+
+  function draw(e) {
+    if (!isDrawing) return;
+    let rect = canvas.getBoundingClientRect();
+    ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+    ctx.strokeStyle = '#000';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+  }
+
+  function stopDraw() { isDrawing = false; }
+  function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+
+  function submitForm() {
+    let blank = document.createElement('canvas');
+    blank.width = canvas.width;
+    blank.height = canvas.height;
+    if (canvas.toDataURL() === blank.toDataURL()) {
+      alert("Krupa karine pehla sahi karo!");
+      return;
     }
 
-    let canvas, ctx, isDrawing = false;
-    function initCanvas() {
-        canvas = document.getElementById('sigCanvas');
-        ctx = canvas.getContext('2d');
-        
-        function resize() {
-            let rect = canvas.getBoundingClientRect();
-            canvas.width = rect.width;
-            canvas.height = 180;
+    document.getElementById('submitBtn').disabled = true;
+    document.getElementById('message').innerHTML = "<span style='color:blue;'>PDF Generate thai rahi chhe, rah juo...</span>";
+
+    let signatureData = canvas.toDataURL('image/png');
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      body: JSON.stringify({
+        token: token,
+        image: signatureData
+      })
+    })
+    .then(res => res.json())
+    .then(result => {
+      if (result.status === "success") {
+        document.getElementById('message').innerHTML = "<span style='color:green;'>Safaltapurvak submit thai gayu! PDF Drive ma save thai gayi chhe.</span>";
+        document.getElementById('formContent').style.display = 'none';
+        if (result.pdfUrl) {
+          setTimeout(() => { window.location.href = result.pdfUrl; }, 1500);
         }
-        resize();
-        window.addEventListener('resize', resize);
-
-        canvas.addEventListener('mousedown', startDraw);
-        canvas.addEventListener('mousemove', draw);
-        canvas.addEventListener('mouseup', stopDraw);
-
-        canvas.addEventListener('touchstart', (e) => { startDraw(e.touches[0]); e.preventDefault(); });
-        canvas.addEventListener('touchmove', (e) => { draw(e.touches[0]); e.preventDefault(); });
-        canvas.addEventListener('touchend', stopDraw);
-    }
-
-    function startDraw(e) {
-        isDrawing = true;
-        ctx.beginPath();
-        let rect = canvas.getBoundingClientRect();
-        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-    }
-
-    function draw(e) {
-        if (!isDrawing) return;
-        let rect = canvas.getBoundingClientRect();
-        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-        ctx.strokeStyle = '#000';
-        ctx.lineWidth = 2;
-        ctx.stroke();
-    }
-
-    function stopDraw() {
-        isDrawing = false;
-    }
-
-    function clearCanvas() {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    function submitForm() {
-        let blank = document.createElement('canvas');
-        blank.width = canvas.width;
-        blank.height = canvas.height;
-        if (canvas.toDataURL() === blank.toDataURL()) {
-            alert("કૃપા કરીને પહેલા સહી કરો!");
-            return;
-        }
-
-        document.getElementById('submitBtn').disabled = true;
-        document.getElementById('message').innerHTML = "<span style='color:blue;'>PDF જનરેટ થઈ રહી છે, રાહ જુઓ...</span>";
-
-        let signatureData = canvas.toDataURL('image/png');
-
-        fetch(SCRIPT_URL, {
-            method: 'POST',
-            body: JSON.stringify({
-                token: token,
-                image: signatureData
-            })
-        })
-        .then(res => res.json())
-        .then(result => {
-            if (result.status === "success") {
-                document.getElementById('message').innerHTML = "<span style='color:green;'>સફળતાપૂર્વક સબમિટ થઈ ગયું અને PDF સેવ થઈ ગઈ!</span>";
-                document.getElementById('formContent').style.display = 'none';
-                if (result.pdfUrl) {
-                    setTimeout(() => { window.location.href = result.pdfUrl; }, 1500);
-                }
-            } else {
-                document.getElementById('submitBtn').disabled = false;
-                document.getElementById('message').innerHTML = "<span style='color:red;'>એરર: " + result.message + "</span>";
-            }
-        })
-        .catch(err => {
-            document.getElementById('submitBtn').disabled = false;
-            document.getElementById('message').innerHTML = "<span style='color:red;'>એરર: " + err + "</span>";
-        });
-    }
+      } else {
+        document.getElementById('submitBtn').disabled = false;
+        document.getElementById('message').innerHTML = "<span style='color:red;'>Error: " + result.message + "</span>";
+      }
+    })
+    .catch(err => {
+      document.getElementById('submitBtn').disabled = false;
+      document.getElementById('message').innerHTML = "<span style='color:red;'>Error: " + err + "</span>";
+    });
+  }
 </script>
 
 </body>
