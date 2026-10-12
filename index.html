@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Passtelacare - Patient Consent Form</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f6f9; margin: 0; padding: 10px; color: #333; }
+        .container { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        h2 { text-align: center; color: #0056b3; font-size: 20px; margin-bottom: 15px; }
+        .loading { text-align: center; font-size: 16px; color: #666; padding: 20px; }
+        .details-box { background: #eef2f7; padding: 12px; border-radius: 6px; margin-bottom: 15px; font-size: 14px; line-height: 1.6; }
+        .details-box p { margin: 4px 0; }
+        .sig-container { border: 2px dashed #ccc; border-radius: 6px; background: #fff; position: relative; margin-bottom: 15px; overflow: hidden; }
+        canvas { display: block; width: 100%; height: 180px; touch-action: none; }
+        .btn-group { display: flex; gap: 10px; }
+        button { flex: 1; padding: 12px; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        .btn-clear { background: #dc3545; color: #fff; }
+        .btn-submit { background: #28a745; color: #fff; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        #message { margin-top: 15px; text-align: center; font-weight: bold; font-size: 14px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>PATIENT CONSENT FORM</h2>
+    
+    <div id="loadingDiv" class="loading">ડેટા લોડ થઈ રહ્યો છે, રાહ જુઓ...</div>
+    
+    <div id="formContent" style="display:none;">
+        <div class="details-box" id="detailsBox"></div>
+
+        <p style="font-weight: bold; margin-bottom: 5px;">સહી કરો (Signature):</p>
+        <div class="sig-container">
+            <canvas id="sigCanvas"></canvas>
+        </div>
+
+        <div class="btn-group">
+            <button type="button" class="btn-clear" onclick="clearCanvas()">ફરી સહી કરો</button>
+            <button type="button" id="submitBtn" class="btn-submit" onclick="submitForm()">સબમિટ કરો (Submit)</button>
+        </div>
+    </div>
+
+    <div id="message"></div>
+</div>
+
+<script>
+    // ⚠️ અહીં તમારું Google Apps Script નું Web App URL સેટ કરેલું છે
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby6My529gHzFHh1JFuszfJif5TW5L5EiHgCetQlrUxmJ_Ok_KKDxjAgMSgR3voTRHvnQg/exec"; 
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('id'); // URL માંથી Secure Token મેળવશે (?id=TOKEN)
+    let fetchedData = {};
+
+    window.onload = function() {
+        if (!token) {
+            document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>ભૂલ: અમાન્ય અથવા ખૂટતી સિક્યોર લિંક! (Token missing in URL)</span>";
+            return;
+        }
+        fetchData();
+    };
+
+    function fetchData() {
+        fetch(SCRIPT_URL + "?id=" + token)
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === "success") {
+                    fetchedData = data;
+                    document.getElementById('loadingDiv').style.display = 'none';
+                    document.getElementById('formContent').style.display = 'block';
+                    
+                    document.getElementById('detailsBox').innerHTML = `
+                        <p><strong>ઇન્ક્વાયરી નંબર:</strong> ${data.inquiryNo || '-'}</p>
+                        <p><strong>ક્લાયન્ટનું નામ:</strong> ${data.clientName || '-'}</p>
+                        <p><strong>દર્દીનું નામ:</strong> ${data.patientName || '-'}</p>
+                        <p><strong>ઉંમર / જાતિ:</strong> ${data.patientAge || '-'} / ${data.gender || '-'}</p>
+                        <p><strong>મોબાઈલ નંબર:</strong> ${data.phone || '-'}</p>
+                        <p><strong>સરનામું:</strong> ${data.address || '-'}</p>
+                    `;
+                    initCanvas();
+                } else {
+                    document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>" + data.message + "</span>";
+                }
+            })
+            .catch(err => {
+                document.getElementById('loadingDiv').innerHTML = "<span style='color:red;'>સર્વર કનેક્શન એરર: " + err + "</span>";
+            });
+    }
+
+    let canvas, ctx, isDrawing = false;
+    function initCanvas() {
+        canvas = document.getElementById('sigCanvas');
+        ctx = canvas.getContext('2d');
+        
+        function resize() {
+            let rect = canvas.getBoundingClientRect();
+            canvas.width = rect.width;
+            canvas.height = 180;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        canvas.addEventListener('mousedown', startDraw);
+        canvas.addEventListener('mousemove', draw);
+        canvas.addEventListener('mouseup', stopDraw);
+
+        canvas.addEventListener('touchstart', (e) => { startDraw(e.touches[0]); e.preventDefault(); });
+        canvas.addEventListener('touchmove', (e) => { draw(e.touches[0]); e.preventDefault(); });
+        canvas.addEventListener('touchend', stopDraw);
+    }
+
+    function startDraw(e) {
+        isDrawing = true;
+        ctx.beginPath();
+        let rect = canvas.getBoundingClientRect();
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+    }
+
+    function draw(e) {
+        if (!isDrawing) return;
+        let rect = canvas.getBoundingClientRect();
+        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+        ctx.strokeStyle = '#000';
+        ctx.lineWidth = 2;
+        ctx.stroke();
+    }
+
+    function stopDraw() {
+        isDrawing = false;
+    }
+
+    function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+    }
+
+    function submitForm() {
+        let blank = document.createElement('canvas');
+        blank.width = canvas.width;
+        blank.height = canvas.height;
+        if (canvas.toDataURL() === blank.toDataURL()) {
+            alert("કૃપા કરીને પહેલા સહી કરો!");
+            return;
+        }
+
+        document.getElementById('submitBtn').disabled = true;
+        document.getElementById('message').innerHTML = "<span style='color:blue;'>PDF જનરેટ થઈ રહી છે, રાહ જુઓ...</span>";
+
+        let signatureData = canvas.toDataURL('image/png');
+
+        fetch(SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify({
+                token: token,
+                image: signatureData
+            })
+        })
+        .then(res => res.json())
+        .then(result => {
+            if (result.status === "success") {
+                document.getElementById('message').innerHTML = "<span style='color:green;'>સફળતાપૂર્વક સબમિટ થઈ ગયું અને PDF સેવ થઈ ગઈ!</span>";
+                document.getElementById('formContent').style.display = 'none';
+                if (result.pdfUrl) {
+                    setTimeout(() => { window.location.href = result.pdfUrl; }, 1500);
+                }
+            } else {
+                document.getElementById('submitBtn').disabled = false;
+                document.getElementById('message').innerHTML = "<span style='color:red;'>એરર: " + result.message + "</span>";
+            }
+        })
+        .catch(err => {
+            document.getElementById('submitBtn').disabled = false;
+            document.getElementById('message').innerHTML = "<span style='color:red;'>એરર: " + err + "</span>";
+        });
+    }
+</script>
+
+</body>
+</html>
