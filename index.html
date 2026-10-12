@@ -67,7 +67,7 @@
 </head>
 <body>
 
-<div id="loadingDiv">ડેટા લોડ થઈ રહ્યો છે, મહેરબાની કરીને રાહ જુઓ...</div>
+<div id="loadingDiv">Loading Data, Please Wait...</div>
 
 <div id="formContent" style="display:none;">
 
@@ -223,9 +223,9 @@
         <div style="font-weight:bold; color:#0072bc; margin-bottom:4px; font-size:13px;">સહી કરો (Client / Relative Signature):</div>
         <canvas id="sigCanvas"></canvas>
         <div class="btn-group">
-          <button type="button" class="btn-clear" onclick="clearCanvas()">ફરી સહી કરો (Clear)</button>
-          <button type="button" id="submitBtn" class="btn-submit" onclick="submitConsent()">સબમિટ કરો (Submit Consent)</button>
-        </div>
+  <button type="button" class="btn-clear" onclick="clearCanvas()">Clear Signature</button>
+  <button type="button" id="submitBtn" class="btn-submit" onclick="submitConsent()">Submit Consent</button>
+</div>
       </div>
     </div>
     <div class="footer-img-container"><img src="FOOTER.png" alt="Footer"><div class="page-number">5 OF 5</div></div>
@@ -405,12 +405,12 @@
     blank.width = canvas.width;
     blank.height = canvas.height;
     if (canvas.toDataURL() === blank.toDataURL()) {
-      alert("કૃપા કરીને સબમિટ કરતા પહેલા સહી કરો!");
+      alert("Please sign before submitting!");
       return;
     }
 
     document.getElementById('submitBtn').disabled = true;
-    document.getElementById('message').innerHTML = "<div style='color:#fff; text-align:center;'>સબમિટ થઈ રહ્યું છે, રાહ જુઓ...</div>";
+    document.getElementById('message').innerHTML = "<div style='color:#fff; text-align:center;'>Submitting, Please Wait...</div>";
 
     let signatureData = canvas.toDataURL('image/png');
 
@@ -426,7 +426,7 @@
     .then(data => {
       if (data.status === 'success' || data.result === 'success') {
         document.getElementById('formContent').style.display = 'none';
-        document.getElementById('message').innerHTML = "<div class='page' style='padding:50px; text-align:center;'><h2 style='color:green;'>સફળતાપૂર્વક સબમિટ થઈ ગયું! PDF ડ્રાઇવમાં સેવ થઈ ગઈ છે.</h2></div>";
+        document.getElementById('message').innerHTML = "<div class='page' style='padding:50px; text-align:center;'><h2 style='color:green;'>Successfully Submitted! PDF Saved to Drive.</h2></div>";
         if (data.pdfUrl) {
           setTimeout(() => { window.location.href = data.pdfUrl; }, 1500);
         }
