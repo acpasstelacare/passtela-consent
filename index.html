@@ -13,7 +13,7 @@
       min-height: 1123px;
       margin: 0 auto 25px auto;
       background: #fff;
-      position: relative; /* આ ખૂબ જરૂરી છે */
+      position: relative;
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       box-sizing: border-box;
       display: flex;
@@ -21,20 +21,19 @@
       justify-content: space-between;
     }
 
-    /* Out-of-the-box Absolute Positioning for Header */
+    /* 100% Guaranteed Header Down Trick using Padding & Important */
     .header-img-container { 
-  width: 100%; 
-  text-align: center; 
-  padding-top: 40px !important; /* !important લગાવવાથી બ્રાઉઝર બળજબરીથી આને નીચે ધકેલશે */
-}
-    .header-img-container img { width: 100%; height: auto; display: block; }
+      width: 100% !important; 
+      text-align: center !important; 
+      padding-top: 45px !important; /* આનાથી હેડર ફરજિયાત નીચે આવશે. જરૂર પડે 45px ને વધારીને 60px કરી શકાય */
+    }
+    .header-img-container img { width: 100% !important; height: auto !important; display: block !important; }
 
     .footer-img-container { width: 100%; position: relative; }
     .footer-img-container img { width: 100%; height: auto; display: block; }
 
-    /* હેડર નીચે આવી ગયું છે, એટલે નીચેના ટેક્સ્ટને ઓવરલેપ ન થાય માટે ઉપર પેડિંગ આપ્યું છે */
     .page-body {
-      padding: 160px 50px 20px 50px; 
+      padding: 15px 50px;
       flex-grow: 1;
     }
 
