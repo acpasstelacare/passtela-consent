@@ -13,7 +13,7 @@
       min-height: 1123px;
       margin: 0 auto 25px auto;
       background: #fff;
-      position: relative;
+      position: relative; /* આ ખૂબ જરૂરી છે */
       box-shadow: 0 4px 15px rgba(0,0,0,0.3);
       box-sizing: border-box;
       display: flex;
@@ -21,19 +21,23 @@
       justify-content: space-between;
     }
 
-    /* દરેક પેજ પર હેડરને નીચે લાવવા માટે અહીં padding-top અથવા margin-top સેટ કરેલ છે */
+    /* Out-of-the-box Absolute Positioning for Header */
     .header-img-container { 
+      position: absolute; 
+      top: 35px; /* <--- અહીંથી હેડર જેટલું નીચે જોઈતું હોય એટલા પિક્સલ વધારી શકો છો (દા.ત. 50px કે 60px) */
+      left: 0;
       width: 100%; 
       text-align: center; 
-      padding-top: 30px; 
+      z-index: 10;
     }
     .header-img-container img { width: 100%; height: auto; display: block; }
 
     .footer-img-container { width: 100%; position: relative; }
     .footer-img-container img { width: 100%; height: auto; display: block; }
 
+    /* હેડર નીચે આવી ગયું છે, એટલે નીચેના ટેક્સ્ટને ઓવરલેપ ન થાય માટે ઉપર પેડિંગ આપ્યું છે */
     .page-body {
-      padding: 15px 50px;
+      padding: 160px 50px 20px 50px; 
       flex-grow: 1;
     }
 
