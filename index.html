@@ -8,6 +8,7 @@
     @page { size: A4; margin: 0; }
     body { font-family: Arial, sans-serif; background: #555; margin: 0; padding: 20px 0; color: #000; }
     
+    /* Perfect Vertical A4 Styling with Exact Images */
     .page {
       width: 794px;
       min-height: 1123px;
@@ -21,10 +22,19 @@
       justify-content: space-between;
     }
 
+    /* Image Header & Footer Styles */
+    .header-img-container { width: 100%; text-align: center; }
+    .header-img-container img { width: 100%; height: auto; display: block; }
+
+    .footer-img-container { width: 100%; position: relative; }
+    .footer-img-container img { width: 100%; height: auto; display: block; }
+
     .page-body {
-      padding: 45px 55px 20px 55px;
+      padding: 20px 50px;
+      flex-grow: 1;
     }
 
+    /* Typography & Spacing for First 4 Pages */
     .page-p1 { line-height: 1.8; }
     .page-p1 .details-list { font-size: 15.5px; line-height: 2.1; margin: 12px 0; padding-left: 20px; }
     .page-p1 .company-header { font-size: 14.5px; line-height: 1.7; }
@@ -40,14 +50,11 @@
     .page-p4 { line-height: 1.8; }
     .page-p4 .data-table { font-size: 14.5px; line-height: 1.6; }
 
+    /* Page 5 Standard Spacing */
     .page-p5 { line-height: 1.45; }
     .page-p5 .terms-text { font-size: 12px; line-height: 1.6; color: #111; padding-left: 16px; margin-top: 6px; }
     .page-p5 .terms-text li { margin-bottom: 6px; }
 
-    .brand-logo { text-align: center; margin-bottom: 6px; }
-    .brand-logo-text { color: #689f38; font-size: 26px; font-weight: bold; font-family: sans-serif; margin: 0; }
-    .brand-logo-sub { font-size: 10px; color: #689f38; font-weight: bold; letter-spacing: 3px; }
-    
     .company-header { text-align: center; font-size: 12.5px; line-height: 1.5; color: #111; }
     .company-header h2 { font-size: 17px; margin: 3px 0; color: #000; font-weight: bold; }
     .company-header h3 { font-size: 14px; margin: 8px 0 2px 0; color: #000; font-weight: bold; }
@@ -62,39 +69,16 @@
     .data-table th, .data-table td { border: 1px solid #555; padding: 8px 12px; text-align: left; }
     .data-table th { background: #f2f2f2; font-weight: bold; text-align: center; }
 
-    .footer-container { width: 100%; margin-top: auto; }
-    .footer-bar {
-      display: flex;
-      width: 100%;
-      background: #0072bc;
-      color: #fff;
-      font-size: 11px;
-    }
-    .footer-left {
-      flex: 1.8;
-      padding: 7px 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .footer-right {
-      flex: 1.2;
-      background: #689f38;
-      padding: 7px 12px;
-      color: #fff;
-      font-size: 9.5px;
-      line-height: 1.25;
-      text-align: right;
-      clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%);
-    }
     .page-number {
       text-align: right;
       font-size: 12px;
       font-weight: bold;
-      padding: 5px 15px 6px 0;
+      padding: 5px 20px 8px 0;
       color: #000;
+      background: #fff;
     }
 
+    /* Signature Area */
     .sig-box {
       margin-top: 12px;
       border: 1px dashed #0072bc;
@@ -121,11 +105,10 @@
 
   <!-- PAGE 1 OF 5 -->
   <div class="page page-p1">
+    <div class="header-img-container">
+      <img src="HEADER.png" alt="Passtelacare Header">
+    </div>
     <div class="page-body">
-      <div class="brand-logo">
-        <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
-        <div class="brand-logo-sub">BETTER FOR YOU</div>
-      </div>
       <div class="company-header">
         <h2>PASSTELA CARE PVT LTD</h2>
         <div>Web: <a href="https://passtelacare.com">https://passtelacare.com</a> | Email: info@passtelacare.com</div>
@@ -151,28 +134,18 @@
         <li><b>Patient Address:</b> <span id="v_address">-</span></li>
       </ul>
     </div>
-    <div class="footer-container">
-      <div class="footer-bar">
-        <div class="footer-left">
-          <span>📞 +91 90999 93666 | +91 90999 93667</span>
-          <span>✉️ info@passtelacare.com</span>
-          <span>🌐 www.passtelacare.com</span>
-        </div>
-        <div class="footer-right">
-          402 Milestone Nr. Doordarshan Metro Station, Drive-in Cinema Road, Thaltej, Ahmedabad, Gujarat 380054
-        </div>
-      </div>
+    <div class="footer-img-container">
+      <img src="FOOTER.png" alt="Passtelacare Footer">
       <div class="page-number">1 OF 5</div>
     </div>
   </div>
 
   <!-- PAGE 2 OF 5 -->
   <div class="page page-p2">
+    <div class="header-img-container">
+      <img src="HEADER.png" alt="Passtelacare Header">
+    </div>
     <div class="page-body">
-      <div class="brand-logo">
-        <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
-        <div class="brand-logo-sub">BETTER FOR YOU</div>
-      </div>
       <div class="section-head">PART A: SERVICES CHARGES & SHIFTS<br><span style="font-size:13.5px; font-weight:normal;">(By Passtela Care Pvt Ltd – Without GST)</span></div>
       <table class="data-table">
         <thead>
@@ -257,28 +230,18 @@
       </table>
       <div style="font-style:italic; font-size:14px; margin-top:15px; text-align:center;">We propose the following professional home healthcare services and shift options:</div>
     </div>
-    <div class="footer-container">
-      <div class="footer-bar">
-        <div class="footer-left">
-          <span>📞 +91 90999 93666 | +91 90999 93667</span>
-          <span>✉️ info@passtelacare.com</span>
-          <span>🌐 www.passtelacare.com</span>
-        </div>
-        <div class="footer-right">
-          402 Milestone Nr. Doordarshan Metro Station, Drive-in Cinema Road, Thaltej, Ahmedabad, Gujarat 380054
-        </div>
-      </div>
+    <div class="footer-img-container">
+      <img src="FOOTER.png" alt="Passtelacare Footer">
       <div class="page-number">2 OF 5</div>
     </div>
   </div>
 
   <!-- PAGE 3 OF 5 -->
   <div class="page page-p3">
+    <div class="header-img-container">
+      <img src="HEADER.png" alt="Passtelacare Header">
+    </div>
     <div class="page-body">
-      <div class="brand-logo">
-        <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
-        <div class="brand-logo-sub">BETTER FOR YOU</div>
-      </div>
       <div class="section-head">PART B: DETAILED SCOPE OF WORK (Service Descriptions)</div>
       <div class="section-subhead">The responsibilities and tasks included under each service are defined below:</div>
       <table class="data-table">
@@ -308,28 +271,18 @@
         </tbody>
       </table>
     </div>
-    <div class="footer-container">
-      <div class="footer-bar">
-        <div class="footer-left">
-          <span>📞 +91 90999 93666 | +91 90999 93667</span>
-          <span>✉️ info@passtelacare.com</span>
-          <span>🌐 www.passtelacare.com</span>
-        </div>
-        <div class="footer-right">
-          402 Milestone Nr. Doordarshan Metro Station, Drive-in Cinema Road, Thaltej, Ahmedabad, Gujarat 380054
-        </div>
-      </div>
+    <div class="footer-img-container">
+      <img src="FOOTER.png" alt="Passtelacare Footer">
       <div class="page-number">3 OF 5</div>
     </div>
   </div>
 
   <!-- PAGE 4 OF 5 -->
   <div class="page page-p4">
+    <div class="header-img-container">
+      <img src="HEADER.png" alt="Passtelacare Header">
+    </div>
     <div class="page-body">
-      <div class="brand-logo">
-        <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
-        <div class="brand-logo-sub">BETTER FOR YOU</div>
-      </div>
       <div class="section-head">PART C: RENTAL MEDICAL EQUIPMENT<br><span style="font-size:13.5px; font-weight:normal;">(By Passtela Surgical Hub – With GST Applicable)</span></div>
       <table class="data-table">
         <thead>
@@ -362,28 +315,18 @@
         <b>In words :</b> RUPEES FIVE THOUSAND ONLY
       </div>
     </div>
-    <div class="footer-container">
-      <div class="footer-bar">
-        <div class="footer-left">
-          <span>📞 +91 90999 93666 | +91 90999 93667</span>
-          <span>✉️ info@passtelacare.com</span>
-          <span>🌐 www.passtelacare.com</span>
-        </div>
-        <div class="footer-right">
-          402 Milestone Nr. Doordarshan Metro Station, Drive-in Cinema Road, Thaltej, Ahmedabad, Gujarat 380054
-        </div>
-      </div>
+    <div class="footer-img-container">
+      <img src="FOOTER.png" alt="Passtelacare Footer">
       <div class="page-number">4 OF 5</div>
     </div>
   </div>
 
   <!-- PAGE 5 OF 5 -->
   <div class="page page-p5">
+    <div class="header-img-container">
+      <img src="HEADER.png" alt="Passtelacare Header">
+    </div>
     <div class="page-body">
-      <div class="brand-logo">
-        <div class="brand-logo-text">PASS<span style="color:#0072bc;">+</span>ELA CARE<sup>®</sup></div>
-        <div class="brand-logo-sub">BETTER FOR YOU</div>
-      </div>
       <div style="font-weight:bold; font-size:13.5px; margin:10px 0 6px 0;">Terms and Conditions</div>
       <ol class="terms-text">
         <li><b>Billing Structure:</b> Services rendered by Passtela Care Pvt Ltd will be billed <b>without GST</b>, whereas medical equipment provided by Passtela Surgical Hub will be billed <b>with GST</b>.</li>
@@ -411,17 +354,8 @@
         </div>
       </div>
     </div>
-    <div class="footer-container">
-      <div class="footer-bar">
-        <div class="footer-left">
-          <span>📞 +91 90999 93666 | +91 90999 93667</span>
-          <span>✉️ info@passtelacare.com</span>
-          <span>🌐 www.passtelacare.com</span>
-        </div>
-        <div class="footer-right">
-          402 Milestone Nr. Doordarshan Metro Station, Drive-in Cinema Road, Thaltej, Ahmedabad, Gujarat 380054
-        </div>
-      </div>
+    <div class="footer-img-container">
+      <img src="FOOTER.png" alt="Passtelacare Footer">
       <div class="page-number">5 OF 5</div>
     </div>
   </div>
