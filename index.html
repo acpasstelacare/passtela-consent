@@ -198,16 +198,9 @@
     <div class="header-img-container"><img src="NEWHEADER.png" alt="Header"></div>
     <div class="page-body">
       <div style="font-weight:bold; font-size:13.5px; margin:8px 0 4px 0;">Terms and Conditions</div>
-      <ol class="terms-text">
-        <li><b>Billing Structure:</b> Services rendered by Passtela Care Pvt Ltd will be billed <b>without GST</b>, whereas medical equipment provided by Passtela Surgical Hub will be billed <b>with GST</b>.</li>
-        <li><b>Payment Terms:</b> A 15-day advance payment is required to start the service. Regular payments must be made within 3 days of receiving the invoice; otherwise, services will be terminated without notice. An extra 1% of the invoice amount shall be levied for non-payment within 3 days.</li>
-        <li><b>Payment Modes:</b> UPI / NEFT / Digital modes, Cash, or Cheques accepted. Rs. 150 per visit will be charged extra for at-home cash/cheque pickup.</li>
-        <li><b>Staff Direct Hiring Restriction:</b> If the company discovers that you have contacted or taken direct service from the staff introduced to you by the company, you will have to pay Rs. 50,000/- (Fifty Thousand only) as company fees for hiring and training efforts.</li>
-        <li><b>Scope of Work:</b> Passtela Care staff will strictly perform patient-related care determined by the company. Involvement in outside housework (cooking, cleaning, garbage, etc.) may lead to immediate service termination.</li>
-        <li><b>Support & Safety:</b> For any issues or staff arrival delays, always call the company customer care number first—never call the staff directly. While we ensure the best care as per medical guidelines, Passtela Care and its staff are not responsible for unforeseen health complications.</li>
-        <li><b>Jurisdiction:</b> All disputes shall be settled by arbitration in Ahmedabad, India, governed by the laws of India.</li>
-        <li><b>Rate Revision / Modification:</b> Passtelacare Pvt Ltd and Passtelacare Surgical Hub reserve the right to revise or modify service and rental rates at any time. In the event of any rate changes, prior written or digital notice of 5 to 10 days will be provided to the client.</li>
-      </ol>
+      <div class="terms-text" id="termsContainer" style="white-space: pre-wrap; font-size:12px; line-height:1.6;">
+        Loading Terms & Conditions...
+      </div>
 
       <div style="font-weight:bold; font-size:13px; margin-top:8px;">Approval & Declaration</div>
       <div style="font-size:12px; margin-top:2px; line-height:1.4;">
@@ -440,6 +433,9 @@
       document.getElementById('message').innerHTML = "<div class='error'>સબમિટ એરર: " + err + "</div>";
     });
   }
+  if (data.termsText) {
+        document.getElementById('termsContainer').innerText = data.termsText;
+      }
 </script>
 
 </body>
