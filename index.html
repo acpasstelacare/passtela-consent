@@ -297,7 +297,7 @@
 
         // જો અગાઉથી સહી થઈ ગઈ હોય તો સીધું PDF ઓપન કરો
         if (data.status === "already_signed" && data.pdfUrl) {
-          document.getElementById('loadingDiv').innerHTML = '<div class="page" style="padding:50px; text-align:center;"><h2 style="color:#0072bc;">આ ફોર્મની સહી અગાઉથી થઈ ચૂકી છે.<br><br>તમારી PDF ઓપન થઈ રહી છે...</h2></div>';
+          document.getElementById('loadingDiv').innerHTML = '<div class="page" style="padding:50px; text-align:center;"><h2 style="color:#0072bc;">This form has already been signed.<br><br>Opening your PDF..</h2></div>';
           window.location.href = data.pdfUrl;
           return;
         }
