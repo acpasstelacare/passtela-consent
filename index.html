@@ -28,24 +28,24 @@
 
     .page-body { padding: 15px 50px; flex-grow: 1; }
     .company-header { 
-  text-align: left; /* Center mathi left align karva mate */
-  font-size: 12.5px; 
-  line-height: 1.5; 
-  color: #111; 
-  padding-left: 40px; /* Thodi jagya chhodva mate */
-}
-.company-header h2 { font-size: 17px; margin: 3px 0; font-weight: bold; }
-.company-header h3 { font-size: 14px; margin: 8px 0 2px 0; font-weight: bold; }
+      text-align: left; /* Left align Header */
+      font-size: 12.5px; 
+      line-height: 1.5; 
+      color: #111; 
+      padding-left: 40px; 
+    }
+    .company-header h2 { font-size: 17px; margin: 3px 0; font-weight: bold; }
+    .company-header h3 { font-size: 14px; margin: 8px 0 2px 0; font-weight: bold; }
 
     .doc-title { text-align: center; font-size: 19px; font-weight: bold; text-decoration: underline; margin: 15px 0 10px 0; }
     .section-head { font-weight: bold; font-size: 16px; margin: 10px 0 6px 0; text-transform: uppercase; text-align: center; }
 
     .data-table { width: 100%; border-collapse: collapse; margin-top: 6px; font-size: 13.5px; }
     .data-table th, .data-table td { 
-  border: 1px solid #555; 
-  padding: 20px 10px; /* Ahiya padding vadharva thi row/cell ni height vadhare thase */
-  text-align: left; 
-}
+      border: 1px solid #555; 
+      padding: 20px 10px; /* Increased row height padding */
+      text-align: left; 
+    }
     .data-table th { background: #f2f2f2; font-weight: bold; text-align: center; }
 
     .page-number { text-align: right; font-size: 12px; font-weight: bold; padding: 5px 20px 8px 0; background: #fff; }
@@ -92,10 +92,12 @@
         <div>GST No: 24CYKPK3744B1ZN, PAN No: CYKPK37448</div>
       </div>
       <div class="doc-title">CONSENT CUM QUOTATION FOR SERVICES</div>
-     <div style="font-size:15.5px; margin-bottom:10px; display:flex; justify-content:space-between;">
-  <span><b>Inquiry No:</b> <span id="v_inquiryNo">-</span></span>
-  <span><b>Date:</b> <span id="v_date">-</span></span>
-</div>
+      
+      <!-- Inquiry No Removed & Date Left Aligned -->
+      <div style="font-size:15.5px; margin-bottom:10px;">
+        <span><b>Date:</b> <span id="v_date">-</span></span>
+      </div>
+
       <div style="font-weight:bold; font-size:15.5px;">Client & Patient Details</div>
       <ul style="line-height:2; font-size:15px; padding-left:20px;">
         <li><b>Client / Relative Name:</b> <span id="v_clientName">-</span></li>
@@ -213,12 +215,12 @@
           <span style="color:#555; font-weight:normal;">Current Date & Time: </span>
           <span id="liveClock">Loading...</span>
         </div>
-        <div style="font-weight:bold; color:#0072bc; margin-bottom:4px; font-size:13px;">સહી કરો (Client / Relative Signature):</div>
+        <div style="font-weight:bold; color:#0072bc; margin-bottom:4px; font-size:13px;">Signature (Client / Relative):</div>
         <canvas id="sigCanvas"></canvas>
         <div class="btn-group">
-  <button type="button" class="btn-clear" onclick="clearCanvas()">Clear Signature</button>
-  <button type="button" id="submitBtn" class="btn-submit" onclick="submitConsent()">Submit Consent</button>
-</div>
+          <button type="button" class="btn-clear" onclick="clearCanvas()">Clear Signature</button>
+          <button type="button" id="submitBtn" class="btn-submit" onclick="submitConsent()">Submit Consent</button>
+        </div>
       </div>
     </div>
     <div class="footer-img-container"><img src="FOOTER.png" alt="Footer"><div class="page-number">5 OF 5</div></div>
@@ -251,7 +253,6 @@
         return data[k];
       }
     }
-    // Search inside nested objects if any
     for (let prop in data) {
       if (typeof data[prop] === 'object' && data[prop] !== null) {
         for (let k of keys) {
@@ -274,7 +275,7 @@
   window.onload = function() {
     startClock();
     if (!token) {
-      document.getElementById('loadingDiv').innerHTML = '<div class="error">ભૂલ: અમાન્ય અથવા ખૂટતી સિક્યોર લિંક! (Token missing in URL)</div>';
+      document.getElementById('loadingDiv').innerHTML = '<div class="error">Error: Missing or Invalid Token in Link!</div>';
       return;
     }
 
@@ -290,7 +291,6 @@
         document.getElementById('formContent').style.display = 'block';
 
         // 1. Patient Details
-        document.getElementById('v_inquiryNo').innerText = findVal(data, 'inquiryNo', 'inquiry_no', 'token');
         document.getElementById('v_date').innerText = findVal(data, 'date', 'Date') !== '-' ? findVal(data, 'date', 'Date') : new Date().toLocaleDateString('en-GB');
         const cName = findVal(data, 'clientName', 'ClientName', 'patientName');
         document.getElementById('v_clientName').innerText = cName;
@@ -336,7 +336,7 @@
             tbody.innerHTML += `<tr><td><b>${name}</b></td><td style="text-align:center;">Per Day</td><td>${rate !== '-' ? '₹' + rate + ' /-' : '-'}</td></tr>`;
           });
         } else {
-          tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">કોઈ ઇક્વિપમેન્ટ પસંદ કરેલ નથી (No Equipment Selected)</td></tr>';
+          tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No Equipment Selected</td></tr>';
         }
 
         // 5. Deposit Details
@@ -346,10 +346,15 @@
         const depWords = findVal(data, 'depositInWords', 'depositeinwords');
         if (depWords !== '-') document.getElementById('v_deposit_words').innerText = depWords;
 
+        // Dynamic Terms and Conditions Fetching
+        if (data.termsText) {
+          document.getElementById('termsContainer').innerText = data.termsText;
+        }
+
         initCanvas();
       })
       .catch(err => {
-        document.getElementById('loadingDiv').innerHTML = '<div class="error">સર્વર કનેક્શન એરર: ' + err + '</div>';
+        document.getElementById('loadingDiv').innerHTML = '<div class="error">Server Connection Error: ' + err + '</div>';
       });
   };
 
@@ -425,17 +430,14 @@
         }
       } else {
         document.getElementById('submitBtn').disabled = false;
-        document.getElementById('message').innerHTML = "<div class='error'>ભૂલ: " + (data.message || data.error) + "</div>";
+        document.getElementById('message').innerHTML = "<div class='error'>Error: " + (data.message || data.error) + "</div>";
       }
     })
     .catch(err => {
       document.getElementById('submitBtn').disabled = false;
-      document.getElementById('message').innerHTML = "<div class='error'>સબમિટ એરર: " + err + "</div>";
+      document.getElementById('message').innerHTML = "<div class='error'>Submit Error: " + err + "</div>";
     });
   }
-  if (data.termsText) {
-        document.getElementById('termsContainer').innerText = data.termsText;
-      }
 </script>
 
 </body>
