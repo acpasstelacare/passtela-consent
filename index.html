@@ -295,10 +295,12 @@
           return;
         }
 
-        // જો અગાઉથી સહી થઈ ગઈ હોય તો સીધું PDF ઓપન કરો
+       // Jo agauthi sahi thai gai hoy to 3 second no delay api ne PDF open karo
         if (data.status === "already_signed" && data.pdfUrl) {
-          document.getElementById('loadingDiv').innerHTML = '<div class="page" style="padding:50px; text-align:center;"><h2 style="color:#0072bc;">This form has already been signed.<br><br>Opening your PDF..</h2></div>';
-          window.location.href = data.pdfUrl;
+          document.getElementById('loadingDiv').innerHTML = '<div class="page" style="padding:50px; text-align:center;"><h2 style="color:#0072bc;">This form has already been signed.<br><br>Opening your PDF in a few seconds...</h2></div>';
+          setTimeout(function() {
+            window.location.href = data.pdfUrl;
+          }, 3000); // 3000 millisecond etle ke 3 second pachhi PDF khulse
           return;
         }
 
