@@ -49,7 +49,7 @@
     .data-table th { background: #f2f2f2; font-weight: bold; text-align: center; }
 
     .page-number { text-align: right; font-size: 12px; font-weight: bold; padding: 5px 20px 8px 0; background: #fff; }
-    .terms-text { font-size: 12px; line-height: 1.5; padding-left: 10px; }
+    .terms-text { font-size: 13px; line-height: 1.75; padding-left: 10px; }
 
     .sig-box { margin-top: 5px; border: 1px dashed #0072bc; padding: 8px; background: #fdfdfd; border-radius: 4px; }
     canvas { display: block; width: 100%; height: 100px; background: #fff; border: 1px solid #bbb; cursor: crosshair; touch-action: none; }
@@ -193,183 +193,28 @@
     <div class="footer-img-container"><img src="FOOTER.png" alt="Footer"><div class="page-number">4 OF 5</div></div>
   </div>
 
-  <!-- PAGE 5 OF 5 (TERMS & SIGNATURE WITH MULTI-LANGUAGE) -->
+  <!-- PAGE 5 OF 5 (TERMS & SIGNATURE) -->
   <div class="page">
     <div class="header-spacer"></div>
     <div class="header-img-container"><img src="NEWHEADER.png" alt="Header"></div>
     <div class="page-body">
+      <div style="font-weight:bold; font-size:13px; margin:4px 0 2px 0;">Terms and Conditions</div>
       
-      <!-- Language Selection Dropdown -->
-      <div style="text-align: right; margin-bottom: 8px;">
-        <label for="langSelect" style="font-weight: bold; font-size: 13px; color: #0072bc;">Select Language / ભાષા પસંદ કરો / भाषा चुनें: </label>
-        <select id="langSelect" onchange="switchLanguage(this.value)" style="padding: 4px 8px; font-weight: bold; font-size: 13px; border: 1px solid #0072bc; border-radius: 4px; cursor: pointer;">
-          <option value="en" selected>English</option>
-          <option value="gu">ગુજરાતી (Gujarati)</option>
-          <option value="hi">हिंदी (Hindi)</option>
-        </select>
-      </div>
+      <ol class="terms-text" style="margin:0; padding-left:15px;">
+        <li><b>Billing Structure:</b> Services rendered by Passtela Care Pvt Ltd will be billed <b>without GST</b>, whereas medical equipment provided by Passtela Surgical Hub will be billed <b>with GST</b>.</li>
+        <li><b>Payment Terms:</b> A 15-day advance payment is required to start the service. Regular payments must be made within 3 days of receiving the invoice; otherwise, services will be terminated without notice. An extra 1% of the invoice amount shall be levied for non-payment within 3 days.</li>
+        <li><b>Transportation Charges:</b> Equipment pickup & return charges will apply separately for all medical equipment provided.</li>
+        <li><b>Payment Modes:</b> UPI / NEFT / Digital modes, Cash, or Cheques accepted. Rs. 150 per visit will be charged extra for at-home cash/cheque pickup.</li>
+        <li><b>Staff Direct Hiring Restriction:</b> If the company discovers that you have contacted or taken direct service from the staff introduced to you by the company, you will have to pay <b>Rs. 50,000/- (Fifty Thousand only)</b> as company fees for hiring and training efforts.</li>
+        <li><b>Scope of Work:</b> Passtela Care staff will strictly perform patient-related care determined by the company. Involvement in outside housework (cooking, cleaning, garbage, etc.) may lead to immediate service termination.</li>
+        <li><b>Support & Safety:</b> For any issues or staff arrival delays, always call the company customer care number first—never call the staff directly. While we ensure the best care as per medical guidelines, Passtela Care and its staff are not responsible for unforeseen health complications.</li>
+        <li><b>Jurisdiction:</b> All disputes shall be settled by arbitration in Ahmedabad, India, governed by the laws of India.</li>
+        <li><b>Rate Revision / Modification:</b> Passtelacare Pvt Ltd and Passtelacare Surgical Hub reserve the right to revise or modify service and rental rates at any time. In the event of any rate changes, prior written or digital notice of <b>5 to 10 days</b> will be provided to the client.</li>
+      </ol>
 
-      <!-- ENGLISH TERMS (DEFAULT) -->
-      <div id="terms-en" class="terms-container">
-        <div style="font-weight:bold; font-size:13px; margin:4px 0 2px 0;">Terms and Conditions</div>
-        <ol class="terms-text" style="margin:0; padding-left:15px;">
-          <li><b>Company Registration -</b> Passtela Care Pvt Ltd and Passtela Surgical Hub are India's leading medical service provider companies.</li>
-          <li><b>Staff Work & Scope of Work -</b> Passtela Care staff will strictly perform patient-related care determined by the company. Involvement in outside housework (cooking, cleaning, garbage, etc.) may lead to immediate service termination.</li>
-          <li><b>Treatment of Staff, Meals & Refreshments -</b> Treat our Nurse/Caretaker as your family member, and it is your duty to provide them with adequate drinking water, refreshments, and meals while serving the patient.</li>
-          <li><b>Hygiene & Infection Prevention:</b> Ask staff to clean their hands & legs before meeting the patient/beneficiary to prevent infection. Explain to staff about the daily medical routine a few times until they understand properly. Necessary items like gloves, sanitizer, etc., must be provided by you (the client/family).</li>
-          <li><b>Safety of Belongings & Health Liability</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>It is the responsibility of patients/relatives to check the belongings of staff every day while entering and leaving your house.</li>
-              <li>Don't allow staff to work in any other rooms/areas than the patient/beneficiary room.</li>
-              <li>The company is not liable for any losses of belongings like Jewellery, Cash, Mobile, Laptop, Kitchen items, etc. Never indulge in personal/professional chat or disclose monetary information to staff. Ensure staff do not carry your belongings when leaving.</li>
-              <li>While we ensure the best care as per medical guidelines, Passtela Care and its staff are not responsible for unforeseen health complications.</li>
-            </ul>
-          </li>
-          <li><b>Customer Support & Delay Reporting -</b> For any issues or staff arrival delays, always call the company customer care number first — never call the staff directly.</li>
-          <li><b>Service Discontinuation Notice</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>Inform the office directly whenever you intend to stop the service, otherwise it will be considered as active service.</li>
-              <li>Services will be terminated without notice in case of non-payment within 3 days of invoice generation.</li>
-            </ul>
-          </li>
-          <li><b>Direct Staff Hiring Restriction & Penalty:</b> If the company discovers that you have contacted or taken direct service from the staff introduced to you by the company without involving the company, you will have to pay <b style="color:red;">Rs. 50,000/- (Fifty Thousand only)</b> as company fees for hiring and training efforts.</li>
-          <li><b>Payment Terms, Advance & Late Penalty -</b> A <b style="color:red;">15-day advance payment</b> is required to start the service. Regular payments must be made within 3 days of receiving the invoice; otherwise, services will be terminated without notice.. An extra <b style="color:red;">1% per day</b> of the invoice amount shall be levied for non-payment within 3 days.</li>
-          <li><b>Payment Directly to Staff -</b> Don't talk or give any payment to staff (caretaker/nurse/doctor) unless instructed. No money shall be given to any staff without the knowledge of the company; otherwise, the company shall not be responsible.</li>
-          <li><b>Payment Modes -</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>Pay directly to the official company bank account via online transfer/cheque. Cash transactions are not accepted.</li>
-              <li>Once the payment is completed, please send a screenshot of the successful payment showing the Reference Number / RRN / Transaction ID / UTR Number on the same WhatsApp/mobile number from which the bill was received.</li>
-            </ul>
-          </li>
-          <li><b>Billing Structure & GST :</b> Services rendered by Passtela Care Pvt Ltd will be billed <b>without GST</b>, whereas medical equipment provided by Passtela Surgical Hub will be billed <b>with GST</b>.</li>
-          <li><b>Transportation & Equipment Deposit</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>Deposit must be paid before starting equipment & for medical service if applicable, and will be adjusted in the last payment. Damage, loss, or missing parts will be deducted from the deposit. Transportation (pickup & return) will be charged extra.</li>
-            </ul>
-          </li>
-          <li><b>Rate Revision & Modification Notice -</b> Passtelacare Pvt Ltd and Passtelacare Surgical Hub reserve the right to revise or modify service and rental rates at any time. In the event of any rate changes, a prior written or digital notice/message of <b style="color:red;">5 to 10 days</b> shall be provided to the client.</li>
-          <li><b>Festival Extra Rates:</b> <b style="color:red;">One and half rate</b> charged for Uttarayan, Dhuleti, Raksha Bandhan, Navratri Aatham, Diwali, Bhai-dooj, and Vikram Samvant New Year.</li>
-          <li><b>Staff Night Duty & Leave Policy</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>You (the client/family) will have to arrange proper sleeping arrangements for our staff (Nurse / Caretaker) near the patient at night.</li>
-              <li>Do not give leave to staff during duty without informing the company. Attendance sheets must be filled and signed daily on time.</li>
-            </ul>
-          </li>
-          <li><b>Jurisdiction & Legal Dispute Settlement -</b> All disputes, contempt, or differences arising out of agreement shall be governed by laws of India and settled by arbitration in Ahmedabad, India.</li>
-        </ol>
-
-        <div style="font-weight:bold; font-size:12px; margin-top:5px;">Approval & Declaration</div>
-        <div style="font-size:11px; margin-top:1px; line-height:1.35;">
-          I, <b class="decl_clientName">-</b>, have carefully read and understood all terms and conditions mentioned above. By signing this, I agree to legally abide by these rules and avail of the services from Passtela Care Pvt Ltd and Passtela Surgical Hub for my relative.
-        </div>
-      </div>
-
-      <!-- GUJARATI TERMS -->
-      <div id="terms-gu" class="terms-container" style="display:none;">
-        <div style="font-weight:bold; font-size:13px; margin:4px 0 2px 0;">નિયમો અને શરતો (Terms and Conditions)</div>
-        <ol class="terms-text" style="margin:0; padding-left:15px;">
-          <li><b>કંપની રજીસ્ટ્રેશન :</b> પાસ્ટેલા કેર પ્રાઇવેટ લિમિટેડ અને પાસ્ટેલા સર્જિકલ હબ એ ભારતની અગ્રણી મેડિકલ સર્વિસ પ્રોવાઇડર કંપનીઓ છે.</li>
-          <li><b>સ્ટાફનું કામ અને કાર્યક્ષેત્ર:</b> પાસ્ટેલા કેરનો સ્ટાફ માત્ર કંપની દ્વારા નક્કી કરાયેલ દર્દી સંબંધિત સંભાળ જ કરશે. ઘરના બહારના કામો (રસોઈ બનાવવી, સફાઈ, કચરો ફેંકવો વગેરે) માં સામેલ કરવાથી સેવા તાત્કાલિક બંધ થઈ શકે છે.</li>
-          <li><b>સ્ટાફ સાથે વર્તન, ભોજન અને નાસ્તો:</b> અમારા નર્સ/કેરટેકર સાથે તમારા પરિવારના સભ્ય જેવો વ્યવહાર કરો. દર્દીની સેવા કરતી વખતે તેમને પૂરતું પીવાનું પાણી, નાસ્તો અને ભોજન આપવું એ તમારી ફરજ છે.</li>
-          <li><b>સ્વચ્છતા અને ચેપ અટકાવવો:</b> ચેપ (ઇન્ફેક્શન) રોકવા માટે સ્ટાફને દર્દી/લાભાર્થીને મળતા પહેલા હાથ-પગ ધોવા માટે કહો. સ્ટાફ યોગ્ય રીતે સમજે નહીં ત્યાં સુધી તેમને દિવસની મેડિકલ દિનચર્યા વિશે થોડી વાર સમજાવો. ગ્લોવ્સ, સેનિટાઇઝર વગેરે જેવી જરૂરી વસ્તુઓ તમારે (ગ્રાહકે/પરિવારે) પૂરી પાડવાની રહેશે.</li>
-          <li><b>વસ્તુઓની સુરક્ષા અને આરોગ્ય સંબંધિત જવાબદારી:</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>સ્ટાફ તમારા ઘરમાં પ્રવેશ કરે અને બહાર નીકળે ત્યારે દરરોજ તેમની બેગ/વસ્તુઓ ચેક કરવાની જવાબદારી દર્દી/સગાંઓની રહેશે.</li>
-              <li>સ્ટાફને દર્દી/લાભાર્થીના રૂમ સિવાય અન્ય કોઈ રૂમ કે વિસ્તારમાં કામ કરવાની મંજૂરી આપશો નહીં.</li>
-              <li>દાગીના, કેશ, મોબાઇલ, લેપટોપ, રસોડાંની વસ્તુઓ વગેરે જેવી કોઈપણ વસ્તુઓની ચોરી કે નુકસાન માટે કંપની જવાબદાર રહેશે નહીં. સ્ટાફ સાથે ક્યારેય અંગત/વ્યાવસાયિક વાતો ન કરો કે નાણાકીય માહિતી ન આપો. ખાતરી કરો કે સ્ટાફ બહાર નીકળતી વખતે તમારી કોઈ વસ્તુ ન લઈ જાય.</li>
-              <li>અમે તબીબી માર્ગદર્શિકા મુજબ શ્રેષ્ઠ સંભાળ સુનિશ્ચિત કરીએ છીએ, પરંતુ પાસ્ટેલા કેર અને તેના સ્ટાફ અણધારી તબીબી જટિલતાઓ (Health Complications) માટે જવાબદાર રહેશે નહીં.</li>
-            </ul>
-          </li>
-          <li><b>કસ્ટમર સપોર્ટ અને વિલંબની જાણ કરવી:</b> કોઈપણ સમસ્યા અથવા સ્ટાફ મોડો આવે તેવા કિસ્સામાં, હંમેશા સૌથી પહેલા કંપનીના કસ્ટમર કેર નંબર પર કૉલ કરો — ક્યારેય સ્ટાફને સીધો કૉલ ન કરો.</li>
-          <li><b>સેવા બંધ કરવાની સૂચના:</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>જ્યારે પણ તમે સેવા બંધ કરવા માંગતા હોવ ત્યારે સીધા ઓફિસમાં જાણ કરો, અન્યથા સેવા સક્રિય (Active) ગણવામાં આવશે.</li>
-              <li>ઇન્વોઇસ જનરેટ થયાના ૩ દિવસમાં ચૂકવણી ના કરવાના કિસ્સામાં કોઈ પણ નોટિસ વગર સેવાઓ બંધ કરી દેવામાં આવશે.</li>
-            </ul>
-          </li>
-          <li><b>સ્ટાફને સીધો નોકરી પર રાખવા પર પ્રતિબંધ અને દંડ:</b> જો કંપનીને માલૂમ પડશે કે તમે કંપનીને વચ્ચે રાખ્યા વિના, કંપની દ્વારા પરિચય કરાવેલ સ્ટાફનો સીધો સંપર્ક કર્યો છે અથવા સીધી સેવા લીધી છે, તો તમારે નોકરી પર રાખવા અને તાલીમના પ્રયાસો માટે કંપની ફી તરીકે <b style="color:red;">રૂ. ૫૦,૦૦૦/- (પચાસ હજાર પૂરા)</b> ચૂકવવા પડશે.</li>
-          <li><b>ચૂકવણીની શરતો, એડવાન્સ અને મોડી ચૂકવણીનો દંડ:</b> સેવા શરૂ કરવા માટે <b style="color:red;">૧૫ દિવસનું એડવાન્સ પેમેન્ટ</b> જરૂરી છે. બિલ મળ્યાના ૩ દિવસની અંદર નિયમિત ચૂકવણી કરવાની રહેશે; અન્યથા કોઈ પણ નોટિસ વગર સેવાઓ બંધ કરવામાં આવશે. ૩ દિવસમાં ચૂકવણી ન કરવા પર બિલની રકમ પર દરેક દિવસનો (રોજનો) વધારાનો <b style="color:red;">૧% દંડ</b> લાગશે.</li>
-          <li><b>સ્ટાફને સીધી ચૂકવણી:</b> સૂચના ન આપવામાં આવે ત્યાં સુધી સ્ટાફ (કેરટેકર/નર્સ/ડોક્ટર) ને કોઈપણ પ્રકારનું પેમેન્ટ આપશો નહીં કે તેવી વાત કરશો નહીં. કંપનીની જાણ બહાર કોઈ પણ સ્ટાફને પૈસા આપવાના રહેશે નહીં; અન્યથા કંપની તેની માટે જવાબદાર રહેશે નહીં.</li>
-          <li><b>ચૂકવણીની પદ્ધતિઓ (Payment Modes):</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>ઓનલાઈન ટ્રાન્સફર/ચેક દ્વારા સીધા કંપનીના ઓફિશિયલ બેંક એકાઉન્ટમાં ચૂકવણી કરો. રોકડ (Cash) વ્યવહારો સ્વીકારવામાં આવતા નથી.</li>
-              <li>પેમેન્ટ પૂર્ણ થઈ ગયા પછી, રેફરન્સ નંબર / RRN / ટ્રાન્ઝેક્શન આઈડી / UTR નંબર દર્શાવતો સ્ક્રીનશોટ તે જ વોટ્સએપ/મોબાઈલ નંબર પર મોકલી આપો જેમાંથી બિલ મળ્યું હતું.</li>
-            </ul>
-          </li>
-          <li><b>બિલિંગ માળખું અને GST:</b> પાસ્ટેલા કેર પ્રાઇવેટ લિમિટેડ દ્વારા પૂરી પાડવામાં આવતી સેવાઓનું બિલ <b>GST વગર</b> બનાવવામાં આવશે, જ્યારે પાસ્ટેલા સર્જિકલ હબ દ્વારા આપવામાં આવતા મેડિકલ ઉપકરણોનું બિલ <b>GST સાથે</b> બનાવવામાં આવશે.</li>
-          <li><b>પરિવહન અને ઉપકરણ ડિપોઝિટ:</b> મેડિકલ સર્વિસ અને ઇક્વિપમેન્ટ શરૂ કરતા પહેલા ડિપોઝિટ ચૂકવવાની રહેશે (જો લાગુ પડતું હોય તો), અને તે છેલ્લા પેમેન્ટમાં એડજસ્ટ કરવામાં આવશે. ઉપકરણનું નુકસાન કે ખોવાયેલા ભાગો ડિપોઝિટમાંથી કાપી લેવામાં આવશે. ટ્રાન્સપોર્ટેશન (પીકઅપ અને રિટર્ન) નો ચાર્જ અલગથી લેવામાં આવશે.</li>
-          <li><b>દર સુધારો અને ફેરફારની નોટિસ:</b> પાસ્ટેલા કેર પ્રાઇવેટ લિમિટેડ અને પાસ્ટેલા સર્જિકલ હબ કોઈપણ સમયે સેવા અને ભાડાના દરોમાં ફેરફાર કરવાનો અધિકાર અનામત રાખે છે. દરના કોઈપણ ફેરફારના કિસ્સામાં, ગ્રાહકને <b style="color:red;">૫ થી ૧૦ દિવસની</b> અગાઉથી લેખિત અથવા ડિજિટલ નોટિસ/મેસેજ આપવામાં આવશે.</li>
-          <li><b>તહેવારોનો વધારાનો ચાર્જ:</b> ઉત્તરાયણ, ધૂળેટી, રક્ષાબંધન, નવરાત્રિ આઠમ, દિવાળી, ભાઈબિજ અને વિક્રમ સંવત નવા વર્ષ માટે <b style="color:red;">દોઢ ગણો દર (One and Half Rate)</b> લાગશે.</li>
-          <li><b>સ્ટાફની નાઇટ ડ્યુટી અને રજાની નીતિ:</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>તમારે અમારા સ્ટાફ (નર્સ / કેરટેકર) ને રાત્રે સુવા માટે દર્દીની પાસે યોગ્ય વ્યવસ્થા કરી આપવાની રહેશે.</li>
-              <li>કંપનીને જાણ કર્યા વિના ડ્યુટી દરમિયાન સ્ટાફને રજા આપશો નહીં. એટેન્ડન્સ શીટ દરરોજ સમયસર ભરવી અને સહી કરવી ફરજિયાત છે.</li>
-            </ul>
-          </li>
-          <li><b>અધિકારક્ષેત્ર અને કાનૂની વિવાદ પતાવટ:</b> આ કરારમાંથી ઉદ્ભવતા તમામ વિવાદો ભારત કાયદાઓ દ્વારા સંચાલિત થશે અને તેનું નિરાકરણ અમદાવાદ, ભારત ખાતે આર્બિટ્રેશન દ્વારા કરવામાં આવશે.</li>
-        </ol>
-
-        <div style="font-weight:bold; font-size:12px; margin-top:5px;">સંમતિ અને જાહેરનામું</div>
-        <div style="font-size:11px; margin-top:1px; line-height:1.35;">
-          હું, <b class="decl_clientName">-</b>, ઉપર દર્શાવેલ તમામ નિયમો અને શરતો ધ્યાનપૂર્વક વાંચી અને સમજી ચૂક્યો/ચૂકી છું. અહીં સહી કરીને, હું આ નિયમોનું કાનૂની રીતે પાલન કરવા અને પાસ્ટેલા કેર પ્રાઇવેટ લિમિટેડ અને પાસ્ટેલા સર્જિકલ હબ પાસેથી મારા સગા માટે સેવાઓ લેવા માટે સંમતિ આપું છું.
-        </div>
-      </div>
-
-      <!-- HINDI TERMS -->
-      <div id="terms-hi" class="terms-container" style="display:none;">
-        <div style="font-weight:bold; font-size:13px; margin:4px 0 2px 0;">नियम एवं शर्तें (Terms and Conditions)</div>
-        <ol class="terms-text" style="margin:0; padding-left:15px;">
-          <li><b>कंपनी का रजिस्ट्रेशन :</b> पास्टेला केयर प्राइवेट लिमिटेड और पास्टेला सर्जिकल हब भारत की अग्रणी मेडिकल सर्विस प्रोवाइडर कंपनियां हैं।</li>
-          <li><b>स्टाफ का कार्य एवं कार्यक्षेत्र:</b> पास्टेला केयर का स्टाफ केवल कंपनी द्वारा निर्धारित मरीज से संबंधित देखभाल ही करेगा। घर के बाहरी कामों (खाना बनाना, सफाई, कचरा फेंकना आदि) में शामिल करने पर सेवा तुरंत समाप्त की जा सकती है।</li>
-          <li><b>स्टाफ के साथ व्यवहार, भोजन एवं जलपान:</b> हमारी नर्स/केयरटेकर के साथ अपने परिवार के सदस्य की तरह व्यवहार करें। मरीज की सेवा करते समय उन्हें पर्याप्त पीने का पानी, नाश्ता और भोजन प्रदान करना आपका कर्तव्य है।</li>
-          <li><b>स्वच्छता एवं संक्रमण की रोकथाम:</b> संक्रमण रोकने के लिए स्टाफ को मरीज/लाभार्थी से मिलने से पहले हाथ और पैर धोने के लिए कहें। जब तक वे ठीक से न समझ जाएं, तब तक उन्हें दिन की मेडिकल दिनचर्या के बारे में कुछ बार समझाएं। ग्लोव्स, सैनिटाइज़र आदि जैसी आवश्यक वस्तुएं आपके (ग्राहक/परिवार द्वारा) प्रदान करनी होंगी।</li>
-          <li><b>सामान की सुरक्षा एवं स्वास्थ्य जिम्मेदारी:</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>स्टाफ के आपके घर में प्रवेश करने और बाहर निकलते समय रोजाना उनके सामान/बैग की जांच करना मरीज/रिश्तेदारों की जिम्मेदारी होगी।</li>
-              <li>स्टाफ को मरीज/लाभार्थी के कमरे के अलावा किसी अन्य कमरे या क्षेत्र में काम करने की अनुमति न दें।</li>
-              <li>गहने, नकदी(रुपये), मोबाइल, लैपटॉप, रसोई के सामान आदि जैसे सामान के नुकसान के लिए कंपनी जिम्मेदार नहीं होगी। स्टाफ से कभी भी व्यक्तिगत/व्यावसायिक बातें न करें और न ही वित्तीय जानकारी दें। सुनिश्चित करें कि बाहर जाते समय स्टाफ आपका कोई सामान न ले जाए।</li>
-              <li>हालांकि हम चिकित्सा दिशानिर्देशों के अनुसार सर्वोत्तम देखभाल सुनिश्चित करते हैं, फिर भी पास्टेला केयर और उसके स्टाफ मरीज की सेहत में होने वाले अचानक बदलावों के लिए जिम्मेदार नहीं होंगे।</li>
-            </ul>
-          </li>
-          <li><b>ग्राहक सेवा और देरी की रिपोर्टिंग:</b> किसी भी समस्या या स्टाफ के आने में देरी होने पर, हमेशा सबसे पहले कंपनी के कस्टमर केयर नंबर पर कॉल करें — कभी भी स्टाफ को सीधे कॉल न करें।</li>
-          <li><b>सेवा समाप्ति की सूचना:</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>जब भी आप सेवा बंद करना चाहें, सीधे कार्यालय को सूचित करें, अन्यथा इसे सक्रिय (Active) सेवा माना जाएगा।</li>
-              <li>इनवॉइस (Invoice) जारी होने के 3 दिनों के भीतर भुगतान न करने पर बिना किसी नोटिस के सेवाएं समाप्त कर दी जा सकती है।</li>
-            </ul>
-          </li>
-          <li><b>स्टाफ को सीधे नौकरी पर रखने पर प्रतिबंध एवं जुर्माना:</b> यदि कंपनी को पता चलता है कि आपने कंपनी को बीच में रखे बिना, कंपनी द्वारा मिलाए गए स्टाफ से सीधा संपर्क किया है या सीधी सेवा ली है, तो आपको भर्ती और प्रशिक्षण के प्रयासों के लिए कंपनी शुल्क के रूप में <b style="color:red;">रु 50,000/- (पचास हजार रुपये मात्र)</b> का भुगतान करना होगा।</li>
-          <li><b>भुगतान की शर्तें, अग्रिम एवं विलंब शुल्क:</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>सेवा शुरू करने के लिए <b style="color:red;">15 दिन का अग्रिम (Advance) भुगतान</b> आवश्यक है।</li>
-              <li>बिल मिलने के 3 दिनों के भीतर नियमित भुगतान किया जाना चाहिए; अन्यथा बिना किसी सूचना के सेवाएं बंद कर दी जा सकती है।</li>
-              <li>3 दिनों के भीतर भुगतान न करने पर बिल की राशि पर प्रतिदिन (रोज़ का) अतिरिक्त <b style="color:red;">1% दंड</b> लगाया जाएगा।</li>
-            </ul>
-          </li>
-          <li><b>स्टाफ को सीधा भुगतान:</b> जब तक निर्देश न दिया जाए, स्टाफ (केयरटेकर/नर्स/डॉक्टर) से पैसे की बात न करें और न ही कोई भुगतान करें। कंपनी की जानकारी के बिना किसी भी स्टाफ को कोई पैसा नहीं दिया जाएगा; अन्यथा कंपनी जिम्मेदार नहीं होगी।</li>
-          <li><b>भुगतान के तरीके (Payment Modes):</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>ऑनलाइन ट्रांसफर/चेक के माध्यम से सीधे कंपनी के आधिकारिक बैंक खाते में भुगतान करें। नकद (Cash) लेनदेन स्वीकार नहीं किया जाएगा।</li>
-              <li>भुगतान पूरा होने के बाद, रेफरेंस नंबर / RRN / ट्रांजेक्शन आईडी / यूटीआर नंबर दिखाने वाला स्क्रीनशॉट उसी व्हाट्सएप/मोबाइल नंबर पर भेजना होगा जिससे बिल प्राप्त हुआ था।</li>
-            </ul>
-          </li>
-          <li><b>बिलिंग संरचना एवं GST:</b> पास्टेला केयर प्राइवेट लिमिटेड द्वारा प्रदान की जाने वाली सेवाओं का बिल <b>बिना GST</b> के बनाया जाएगा, जबकि पास्टेला सर्जिकल हब द्वारा प्रदान किए गए चिकित्सा उपकरणों का बिल <b>GST के साथ</b> बनाया जाएगा।</li>
-          <li><b>परिवहन एवं उपकरण जमा राशि (Deposit):</b> उपकरण और चिकित्सा सेवा शुरू करने से पहले एडवांस डिपॉजिट राशि का भुगतान करना होगा (यदि लागू हो), जिसे अंतिम भुगतान से सेटल किया जाएगा। उपकरण के नुकसान या गायब हिस्सों की राशि डिपॉजिट से काट ली जाएगी। परिवहन (पिकअप और रिटर्न) का शुल्क अलग से लिया जाएगा।</li>
-          <li><b>दर संशोधन एवं परिवर्तन नोटिस:</b> पास्टेला केयर प्राइवेट लिमिटेड और पास्टेला सर्जिकल हब किसी भी समय सेवा और किराए की दरों में संशोधन या बदलाव करने का अधिकार सुरक्षित रखते हैं। दरों में किसी भी बदलाव के मामले में, ग्राहक को <b style="color:red;">5 से 10 दिनों की</b> पूर्व लिखित या डिजिटल सूचना/मैसेज दिया जाएगा।</li>
-          <li><b>त्योहारों का अतिरिक्त शुल्क:</b> उत्तरायण, धुलेटी, रक्षाबंधन, नवरात्रि आठम, दिवाली, भाई-दूज और विक्रम संवत नए साल के लिए <b style="color:red;">डेढ़ गुना शुल्क (One and Half Rate)</b> लागू होगा।</li>
-          <li><b>स्टाफ की नाइट ड्यूटी एवं छुट्टी नीति:</b>
-            <ul style="padding-left:15px; margin:2px 0;">
-              <li>आपको हमारे स्टाफ (नर्स / केयरटेकर) के लिए रात में सोने हेतु मरीज के पास उचित व्यवस्था करनी होगी।</li>
-              <li>कंपनी को सूचित किए बिना ड्यूटी के दौरान स्टाफ को छुट्टी न दें। उपस्थिति पत्रक (Attendance Sheet) प्रतिदिन समय पर भरा और हस्ताक्षरित किया जाना चाहिए।</li>
-            </ul>
-          </li>
-          <li><b>क्षेत्राधिकार एवं कानूनी विवाद निपटान:</b> इस समझौते से उत्पन्न होने वाले सभी विवाद या मतभेद भारत के कानूनों द्वारा शासित होंगे और इसका निपटारा अहमदाबाद, भारत में मध्यस्थता (Arbitration) द्वारा किया जाएगा।</li>
-        </ol>
-
-        <div style="font-weight:bold; font-size:12px; margin-top:5px;">सहमति और घोषणा</div>
-        <div style="font-size:11px; margin-top:1px; line-height:1.35;">
-          मैं, <b class="decl_clientName">-</b>, ऊपर बताई गई सभी नियमों और शर्तों को ध्यानपूर्वक पढ़ और समझ चुका/चुकी हूँ। इस पर हस्ताक्षर करके, मैं कानूनी रूप से इन नियमों का पालन करने और पास्टेला केयर प्राइवेट लिमिटेड तथा पास्टेला सर्जिकल हब से अपने रिश्तेदार के लिए सेवाएं लेने के लिए सहमति देता/देती हूँ।
-        </div>
+      <div style="font-weight:bold; font-size:12.5px; margin-top:5px;">Approval & Declaration</div>
+      <div style="font-size:11.5px; margin-top:1px; line-height:1.35;">
+        I, <b id="decl_clientName">-</b>, have carefully read and understood all terms and conditions mentioned above. By signing this, I agree to legally abide by these rules and avail of the services from Passtela Care Pvt Ltd and Passtelacare Surgical Hub for my relative.
       </div>
 
       <!-- Signature Box with Live Clock -->
@@ -406,21 +251,6 @@
       const clockElem = document.getElementById('liveClock');
       if(clockElem) clockElem.innerText = dateStr + " " + timeStr;
     }, 1000);
-  }
-
-  // Language Switcher Function
-  function switchLanguage(lang) {
-    document.getElementById('terms-en').style.display = 'none';
-    document.getElementById('terms-gu').style.display = 'none';
-    document.getElementById('terms-hi').style.display = 'none';
-
-    if (lang === 'gu') {
-      document.getElementById('terms-gu').style.display = 'block';
-    } else if (lang === 'hi') {
-      document.getElementById('terms-hi').style.display = 'block';
-    } else {
-      document.getElementById('terms-en').style.display = 'block';
-    }
   }
 
   // Universal Value Helper
@@ -465,11 +295,12 @@
           return;
         }
 
+       // Jo agauthi sahi thai gai hoy to 3 second no delay api ne PDF open karo
         if (data.status === "already_signed" && data.pdfUrl) {
           document.getElementById('loadingDiv').innerHTML = '<div class="page" style="padding:50px; text-align:center;"><h2 style="color:#0072bc;">This form has already been signed.<br><br>Opening your PDF in a few seconds...</h2></div>';
           setTimeout(function() {
             window.location.href = data.pdfUrl;
-          }, 6000);
+          }, 6000); // 6000 millisecond etle ke 3 second pachhi PDF khulse
           return;
         }
 
@@ -480,7 +311,7 @@
         document.getElementById('v_date').innerText = findVal(data, 'date', 'Date') !== '-' ? findVal(data, 'date', 'Date') : new Date().toLocaleDateString('en-GB');
         const cName = findVal(data, 'clientName', 'ClientName', 'patientName');
         document.getElementById('v_clientName').innerText = cName;
-        document.querySelectorAll('.decl_clientName').forEach(elem => elem.innerText = cName);
+        document.getElementById('decl_clientName').innerText = cName;
         document.getElementById('v_patientName').innerText = findVal(data, 'patientName', 'PatientName');
         document.getElementById('v_age').innerText = findVal(data, 'patientAge', 'age', 'PatientAge');
         document.getElementById('v_gender').innerText = findVal(data, 'gender', 'Gender');
