@@ -64,12 +64,12 @@
     .error { color: #ff6b6b; background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     #message { text-align: center; font-weight: bold; margin-top: 15px; font-size: 16px; color: #fff; }
 
-    /* Language Selection Popup Modal */
+    /* Language Selection Popup Modal (Initially Hidden) */
     #langModal {
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
       background: rgba(0, 0, 0, 0.85);
-      display: flex;
+      display: none;
       justify-content: center;
       align-items: center;
       z-index: 9999;
@@ -498,11 +498,21 @@
     if(langSelect) langSelect.value = lang;
     
     switchLanguage(lang);
+    
+    // Resize canvas after showing form
+    setTimeout(() => {
+      if(canvas) {
+        let rect = canvas.getBoundingClientRect();
+        if(rect.width > 0) {
+          canvas.width = rect.width;
+          canvas.height = 100;
+        }
+      }
+    }, 200);
   }
 
   // Language Switcher Function (For both Popup & Dropdown)
   function switchLanguage(lang) {
-    // Hide all parts
     document.getElementById('terms-en-p1').style.display = 'none';
     document.getElementById('terms-en-p2').style.display = 'none';
     document.getElementById('terms-gu-p1').style.display = 'none';
@@ -572,9 +582,13 @@
           return;
         }
 
+        // 1. Hide loading div
         document.getElementById('loadingDiv').style.display = 'none';
 
-        // 1. Patient Details
+        // 2. Show Language Popup Modal AFTER data is successfully loaded
+        document.getElementById('langModal').style.display = 'flex';
+
+        // 3. Populate Patient & Data details in background
         document.getElementById('v_date').innerText = findVal(data, 'date', 'Date') !== '-' ? findVal(data, 'date', 'Date') : new Date().toLocaleDateString('en-GB');[cite: 1]
         const cName = findVal(data, 'clientName', 'ClientName', 'patientName');[cite: 1]
         document.getElementById('v_clientName').innerText = cName;[cite: 1]
@@ -586,7 +600,7 @@
         document.getElementById('v_email').innerText = findVal(data, 'email', 'Email');[cite: 1]
         document.getElementById('v_address').innerText = findVal(data, 'address', 'Address');[cite: 1]
 
-        // 2. Part A Service Rates
+        // 4. Part A Service Rates
         document.getElementById('r_n_24').innerText = formatCost(findVal(data, 'n_24', 'N_24_RATE'));[cite: 1]
         document.getElementById('r_n_d').innerText = formatCost(findVal(data, 'n_d', 'N_D_RATE'));[cite: 1]
         document.getElementById('r_n_n').innerText = formatCost(findVal(data, 'n_n', 'N_N_RATE'));[cite: 1]
@@ -604,12 +618,12 @@
 
         document.getElementById('r_physio').innerText = formatCost(findVal(data, 'physio', 'PHYSIO_RATE'));[cite: 1]
 
-        // 3. Part B Scope
+        // 5. Part B Scope
         document.getElementById('s_nursing').innerText = findVal(data, 'nursing_works', 'NURSING_WORKS');[cite: 1]
         document.getElementById('s_ct').innerText = findVal(data, 'ct_works', 'CT_WORKS');[cite: 1]
         document.getElementById('s_baby').innerText = findVal(data, 'baby_works', 'BABY_WORKS');[cite: 1]
 
-        // 4. Part C Dynamic Equipment List
+        // 6. Part C Dynamic Equipment List
         const tbody = document.getElementById('equip_tbody');
         tbody.innerHTML = '';
         let eqList = data.equipmentList || data.equipments || (data.partC ? data.partC : null);[cite: 1]
@@ -623,7 +637,7 @@
           tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No Equipment Selected</td></tr>';[cite: 1]
         }
 
-        // 5. Deposit Details
+        // 7. Deposit Details
         const depAmt = findVal(data, 'depositAmount', 'deposite', 'deposit');[cite: 1]
         if (depAmt !== '-') document.getElementById('v_deposit').innerText = depAmt;[cite: 1]
         
@@ -644,8 +658,10 @@
     
     function resizeCanvas() {
       let rect = canvas.getBoundingClientRect();
-      canvas.width = rect.width;
-      canvas.height = 100;
+      if(rect.width > 0) {
+        canvas.width = rect.width;
+        canvas.height = 100;
+      }
     }
     resizeCanvas();
 
