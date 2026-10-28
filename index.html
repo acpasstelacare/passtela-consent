@@ -63,9 +63,56 @@
     #loadingDiv { text-align: center; padding: 100px 20px; font-size: 20px; font-weight: bold; color: #fff; }
     .error { color: #ff6b6b; background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     #message { text-align: center; font-weight: bold; margin-top: 15px; font-size: 16px; color: #fff; }
+
+    /* Language Selection Popup Modal */
+    #langModal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.85);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .modal-content {
+      background: #fff;
+      padding: 30px;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 400px;
+      width: 90%;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+    }
+    .modal-content h3 { margin-top: 0; color: #0072bc; font-size: 20px; }
+    .lang-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      font-size: 16px;
+      font-weight: bold;
+      background: #0072bc;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .lang-btn:hover { background: #005b96; }
   </style>
 </head>
 <body>
+
+<!-- Language Selection Popup Modal -->
+<div id="langModal">
+  <div class="modal-content">
+    <h3>Select Language / ભાષા પસંદ કરો / भाषा चुनें</h3>
+    <p style="font-size: 14px; color: #555; margin-bottom: 20px;">Please select your preferred language for Terms & Conditions:</p>
+    <button class="lang-btn" onclick="selectInitialLanguage('en')">English</button>
+    <button class="lang-btn" onclick="selectInitialLanguage('gu')">ગુજરાતી (Gujarati)</button>
+    <button class="lang-btn" onclick="selectInitialLanguage('hi')">हिंदी (Hindi)</button>
+  </div>
+</div>
 
 <div id="loadingDiv">Loading Data, Please Wait...</div>
 
@@ -203,13 +250,13 @@
       <div style="text-align: right; margin-bottom: 8px;">
         <label for="langSelect" style="font-weight: bold; font-size: 13px; color: #0072bc;">Select Language / ભાષા પસંદ કરો / भाषा चुनें: </label>
         <select id="langSelect" onchange="switchLanguage(this.value)" style="padding: 4px 8px; font-weight: bold; font-size: 13px; border: 1px solid #0072bc; border-radius: 4px; cursor: pointer;">
-          <option value="en" selected>English</option>
+          <option value="en">English</option>
           <option value="gu">ગુજરાતી (Gujarati)</option>
           <option value="hi">हिंदी (Hindi)</option>
         </select>
       </div>
 
-      <!-- ENGLISH TERMS (DEFAULT) -->
+      <!-- ENGLISH TERMS -->
       <div id="terms-en" class="terms-container">
         <div style="font-weight:bold; font-size:13px; margin:4px 0 2px 0;">Terms and Conditions</div>
         <ol class="terms-text" style="margin:0; padding-left:15px;">
@@ -260,7 +307,7 @@
 
         <div style="font-weight:bold; font-size:12px; margin-top:5px;">Approval & Declaration</div>
         <div style="font-size:11px; margin-top:1px; line-height:1.35;">
-          I, <b class="decl_clientName">-</b>, have carefully read and understood all terms and conditions mentioned above. By signing this, I agree to legally abide by these rules and avail of the services from Passtela Care Pvt Ltd and Passtela Surgical Hub for my relative.
+          I, <b class="decl_clientName">-</b>, have carefully read and understood all terms and conditions mentioned above. By signing this, I agree to legally abide by these rules and avail of the services from Passtela Care Pvt Ltd and Passtelacare Surgical Hub for my relative.
         </div>
       </div>
 
@@ -408,7 +455,14 @@
     }, 1000);
   }
 
-  // Language Switcher Function
+  // Initial Language Selection from Popup Modal
+  function selectInitialLanguage(lang) {
+    document.getElementById('langModal').style.display = 'none';
+    document.getElementById('langSelect').value = lang;
+    switchLanguage(lang);
+  }
+
+  // Language Switcher Function (For both Popup & Dropdown)
   function switchLanguage(lang) {
     document.getElementById('terms-en').style.display = 'none';
     document.getElementById('terms-gu').style.display = 'none';
