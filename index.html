@@ -64,15 +64,15 @@
     .error { color: #ff6b6b; background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: 0 auto; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
     #message { text-align: center; font-weight: bold; margin-top: 15px; font-size: 16px; color: #fff; }
 
-    /* Language Selection Popup Modal (Initially Hidden) */
+    /* Language Selection Popup Modal */
     #langModal {
       position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0, 0, 0, 0.85);
+      top: 0; left: 0; width: 100vw; height: 100vh;
+      background: rgba(0, 0, 0, 0.9);
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 9999;
+      z-index: 99999;
     }
     .modal-content {
       background: #fff;
@@ -486,52 +486,6 @@
     }, 1000);
   }
 
-  // Initial Language Selection from Popup Modal
-  function selectInitialLanguage(lang) {
-    const modal = document.getElementById('langModal');
-    if(modal) modal.style.display = 'none';
-    
-    const formContent = document.getElementById('formContent');
-    if(formContent) formContent.style.display = 'block';
-
-    const langSelect = document.getElementById('langSelect');
-    if(langSelect) langSelect.value = lang;
-    
-    switchLanguage(lang);
-    
-    // Resize canvas after showing form
-    setTimeout(() => {
-      if(canvas) {
-        let rect = canvas.getBoundingClientRect();
-        if(rect.width > 0) {
-          canvas.width = rect.width;
-          canvas.height = 100;
-        }
-      }
-    }, 200);
-  }
-
-  // Language Switcher Function (For both Popup & Dropdown)
-  function switchLanguage(lang) {
-    document.getElementById('terms-en-p1').style.display = 'none';
-    document.getElementById('terms-en-p2').style.display = 'none';
-    document.getElementById('terms-gu-p1').style.display = 'none';
-    document.getElementById('terms-gu-p2').style.display = 'none';
-    document.getElementById('terms-hi-p1').style.display = 'none';
-    document.getElementById('terms-hi-p2').style.display = 'none';
-
-    if (lang === 'gu') {
-      document.getElementById('terms-gu-p1').style.display = 'block';
-      document.getElementById('terms-gu-p2').style.display = 'block';
-    } else if (lang === 'hi') {
-      document.getElementById('terms-hi-p1').style.display = 'block';
-      document.getElementById('terms-hi-p2').style.display = 'block';
-    } else {
-      document.getElementById('terms-en-p1').style.display = 'block';
-      document.getElementById('terms-en-p2').style.display = 'block';
-    }
-  }
-
   // Universal Value Helper
   function findVal(data, ...keys) {
     if (!data) return "-";
@@ -569,7 +523,7 @@
     fetch(SCRIPT_URL + "?id=" + token)
       .then(res => res.json())
       .then(data => {
-       if (data.error) {
+        if (data.error) {
           document.getElementById('loadingDiv').innerHTML = '<div class="error">' + data.error + '</div>';[cite: 1]
           return;
         }
@@ -585,10 +539,7 @@
         // 1. Hide loading div
         document.getElementById('loadingDiv').style.display = 'none';
 
-        // 2. Show Language Popup Modal AFTER data is successfully loaded
-        document.getElementById('langModal').style.display = 'flex';
-
-        // 3. Populate Patient & Data details in background
+        // 2. Populate Patient & Data details
         document.getElementById('v_date').innerText = findVal(data, 'date', 'Date') !== '-' ? findVal(data, 'date', 'Date') : new Date().toLocaleDateString('en-GB');[cite: 1]
         const cName = findVal(data, 'clientName', 'ClientName', 'patientName');[cite: 1]
         document.getElementById('v_clientName').innerText = cName;[cite: 1]
@@ -600,7 +551,7 @@
         document.getElementById('v_email').innerText = findVal(data, 'email', 'Email');[cite: 1]
         document.getElementById('v_address').innerText = findVal(data, 'address', 'Address');[cite: 1]
 
-        // 4. Part A Service Rates
+        // 3. Part A Service Rates
         document.getElementById('r_n_24').innerText = formatCost(findVal(data, 'n_24', 'N_24_RATE'));[cite: 1]
         document.getElementById('r_n_d').innerText = formatCost(findVal(data, 'n_d', 'N_D_RATE'));[cite: 1]
         document.getElementById('r_n_n').innerText = formatCost(findVal(data, 'n_n', 'N_N_RATE'));[cite: 1]
@@ -618,12 +569,12 @@
 
         document.getElementById('r_physio').innerText = formatCost(findVal(data, 'physio', 'PHYSIO_RATE'));[cite: 1]
 
-        // 5. Part B Scope
+        // 4. Part B Scope
         document.getElementById('s_nursing').innerText = findVal(data, 'nursing_works', 'NURSING_WORKS');[cite: 1]
         document.getElementById('s_ct').innerText = findVal(data, 'ct_works', 'CT_WORKS');[cite: 1]
         document.getElementById('s_baby').innerText = findVal(data, 'baby_works', 'BABY_WORKS');[cite: 1]
 
-        // 6. Part C Dynamic Equipment List
+        // 5. Part C Dynamic Equipment List
         const tbody = document.getElementById('equip_tbody');
         tbody.innerHTML = '';
         let eqList = data.equipmentList || data.equipments || (data.partC ? data.partC : null);[cite: 1]
@@ -637,41 +588,79 @@
           tbody.innerHTML = '<tr><td colspan="3" style="text-align:center;">No Equipment Selected</td></tr>';[cite: 1]
         }
 
-        // 7. Deposit Details
+        // 6. Deposit Details
         const depAmt = findVal(data, 'depositAmount', 'deposite', 'deposit');[cite: 1]
         if (depAmt !== '-') document.getElementById('v_deposit').innerText = depAmt;[cite: 1]
         
         const depWords = findVal(data, 'depositInWords', 'depositeinwords');[cite: 1]
         if (depWords !== '-') document.getElementById('v_deposit_words').innerText = depWords;[cite: 1]
 
-        initCanvas();
+        // 7. Show Language Selection Popup Modal Now
+        document.getElementById('langModal').style.display = 'flex';
       })
       .catch(err => {
         document.getElementById('loadingDiv').innerHTML = '<div class="error">Server Connection Error: ' + err + '</div>';[cite: 1]
       });
   };
 
-  let canvas, ctx, isDrawing = false;
-  function initCanvas() {
-    canvas = document.getElementById('sigCanvas');
-    ctx = canvas.getContext('2d');[cite: 1]
+  // Initial Language Selection from Popup Modal
+  function selectInitialLanguage(lang) {
+    document.getElementById('langModal').style.display = 'none';
+    document.getElementById('formContent').style.display = 'block';
     
-    function resizeCanvas() {
-      let rect = canvas.getBoundingClientRect();
-      if(rect.width > 0) {
-        canvas.width = rect.width;
-        canvas.height = 100;
+    const langSelect = document.getElementById('langSelect');
+    if(langSelect) langSelect.value = lang;
+    
+    switchLanguage(lang);
+    
+    // Resize canvas properly
+    setTimeout(() => {
+      let canvas = document.getElementById('sigCanvas');
+      if(canvas) {
+        let rect = canvas.getBoundingClientRect();
+        if(rect.width > 0) {
+          canvas.width = rect.width;
+          canvas.height = 100;
+          initCanvasEvents();
+        }
       }
+    }, 100);
+  }
+
+  // Language Switcher Function
+  function switchLanguage(lang) {
+    document.getElementById('terms-en-p1').style.display = 'none';
+    document.getElementById('terms-en-p2').style.display = 'none';
+    document.getElementById('terms-gu-p1').style.display = 'none';
+    document.getElementById('terms-gu-p2').style.display = 'none';
+    document.getElementById('terms-hi-p1').style.display = 'none';
+    document.getElementById('terms-hi-p2').style.display = 'none';
+
+    if (lang === 'gu') {
+      document.getElementById('terms-gu-p1').style.display = 'block';
+      document.getElementById('terms-gu-p2').style.display = 'block';
+    } else if (lang === 'hi') {
+      document.getElementById('terms-hi-p1').style.display = 'block';
+      document.getElementById('terms-hi-p2').style.display = 'block';
+    } else {
+      document.getElementById('terms-en-p1').style.display = 'block';
+      document.getElementById('terms-en-p2').style.display = 'block';
     }
-    resizeCanvas();
+  }
 
-    canvas.addEventListener('mousedown', startDraw);
-    canvas.addEventListener('mousemove', draw);
-    canvas.addEventListener('mouseup', stopDraw);
+  let canvas, ctx, isDrawing = false;
+  function initCanvasEvents() {
+    canvas = document.getElementById('sigCanvas');
+    if(!canvas) return;
+    ctx = canvas.getContext('2d');[cite: 1]
 
-    canvas.addEventListener('touchstart', (e) => { startDraw(e.touches[0]); e.preventDefault(); });
-    canvas.addEventListener('touchmove', (e) => { draw(e.touches[0]); e.preventDefault(); });
-    canvas.addEventListener('touchend', stopDraw);
+    canvas.onmousedown = startDraw;
+    canvas.onmousemove = draw;
+    canvas.onmouseup = stopDraw;
+
+    canvas.ontouchstart = (e) => { startDraw(e.touches[0]); e.preventDefault(); };
+    canvas.ontouchmove = (e) => { draw(e.touches[0]); e.preventDefault(); };
+    canvas.ontouchend = stopDraw;
   }
 
   function startDraw(e) {
@@ -691,7 +680,7 @@
   }
 
   function stopDraw() { isDrawing = false; }
-  function clearCanvas() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
+  function clearCanvas() { if(ctx) ctx.clearRect(0, 0, canvas.width, canvas.height); }
 
   function submitConsent() {
     let blank = document.createElement('canvas');
