@@ -488,9 +488,15 @@
 
   // Initial Language Selection from Popup Modal
   function selectInitialLanguage(lang) {
-    document.getElementById('langModal').style.display = 'none';
+    const modal = document.getElementById('langModal');
+    if(modal) modal.style.display = 'none';
+    
+    const formContent = document.getElementById('formContent');
+    if(formContent) formContent.style.display = 'block';
+
     const langSelect = document.getElementById('langSelect');
     if(langSelect) langSelect.value = lang;
+    
     switchLanguage(lang);
   }
 
@@ -567,8 +573,6 @@
         }
 
         document.getElementById('loadingDiv').style.display = 'none';
-        // Make sure formContent displays properly after data is fetched
-        document.getElementById('formContent').style.display = 'block';
 
         // 1. Patient Details
         document.getElementById('v_date').innerText = findVal(data, 'date', 'Date') !== '-' ? findVal(data, 'date', 'Date') : new Date().toLocaleDateString('en-GB');[cite: 1]
