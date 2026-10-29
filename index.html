@@ -588,6 +588,8 @@
       return;
     }
 
+    let selectedLang = document.getElementById('langSelect') ? document.getElementById('langSelect').value : 'en';
+
     document.getElementById('submitBtn').disabled = true;
     document.getElementById('message').innerHTML = "<div style='color:#fff; text-align:center;'>Submitting, Please Wait...</div>";
 
@@ -598,7 +600,8 @@
       body: JSON.stringify({
         token: token,
         signature: signatureData,
-        image: signatureData
+        image: signatureData,
+        lang: selectedLang  // <--- AA LINE ADD KARVI ZARURI CHHE
       })
     })
     .then(res => res.json())
